@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap');
+
+:root {
+  --color1:#00979B; /* Teal */
+  --color2:#73C1BB; /* Turquoise */
+  --color3: #272E2E; /* Charcoal */
+  --color4:#E5A26B; /* Salmon */
+  --color5:#F1DC8E; /* Mustard */
+  --color6: #fff; /* White */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* height: 100vh; */
+    /* margin: 0; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* overflow: hidden; */
+    /* background-color:#73C1BB; */
+}
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.bg-color1 {
+  background-color: var(--color1);
+}
+
+
+
+
+/* map css */
+.mapState {
+  fill:var(--color1);
+  stroke:#fff;
+  stroke-width: 1.75;
+  cursor: pointer;
+  transition:.75s;
+}
+
+.mapState:hover {
+  fill:var(--color2)
+}
+.mapState:active {
+  fill:var(--color4)
+}
+.mapStateSelected {
+  fill:var(--color4)
+}
+
+.mapLines {
+  fill: none;
+  stroke: #666;
+  stroke-width: 3px;
+}
+
+.mapStateCode{
+  pointer-events: none;
+  font-weight: bold;
+  fill:#fff;
+}

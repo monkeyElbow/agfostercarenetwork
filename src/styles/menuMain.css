@@ -1,0 +1,14 @@
+.menuMain {
+    /* width: 100vw; */
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0; */
+    background-color: black;
+}
+
+.menuMain a {
+    color: white;
+    padding: 15px 10px 10px 10px;
+    text-decoration: none;
+    margin: auto;
+}
