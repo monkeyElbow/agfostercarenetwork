@@ -9,10 +9,10 @@ export default function Signup() {
 const emailRef = useRef()
 const passwordRef = useRef()
 const passwordConfirmRef = useRef()
-const {signup } = useAuth()
+const { signup } = useAuth()
 const [error, setError] = useState('')
 const [loading, setLoading] = useState(false)
-const history = useHistory
+const history = useHistory()
 
 async function handleSubmit(e) {
     e.preventDefault()
@@ -60,7 +60,7 @@ async function handleSubmit(e) {
         <Form.Label>password confirmation</Form.Label>
         <Form.Control type="password" ref={passwordConfirmRef}></Form.Control>
     </Form.Group>
-
+<br />
 <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
 
 </Form>

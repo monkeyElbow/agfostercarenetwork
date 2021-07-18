@@ -1,6 +1,7 @@
 import NumberFormat from "react-number-format";
 import { Container } from "react-bootstrap";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function UsMap() {
 
@@ -263,10 +264,18 @@ export default function UsMap() {
 
 
 
+
+
+
   return (
     <>
 
-    <Container className="text-center" style={{color:"var(--color4"}}>
+
+
+
+            
+
+    <Container className="text-center py-4" style={{color:"var(--color4"}}>
         <h1>
           <strong>
 {selectedState}
@@ -940,6 +949,17 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
           <path d="M906.2 250h-38.9v-26h-29m67.9-85h-23v13.6m-44.8-55.7V81.3h-88.1V69.2" />
         </g>
       </svg>
+
+
+      <Container className="p-4 text-center">
+
+<h5>
+<Link to="/signup">Sign up to join the network if you are an AG Foster Care resource or Foster Care parent.</Link>
+</h5>
+
+</Container>
+
+
     </>
   );
 }

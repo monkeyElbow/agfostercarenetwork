@@ -11,35 +11,32 @@ import KidsIconsRow from "../graphics/KidsIconsRow";
 const home = () => {
   return (
     <>
-
-
-
-      <Container fluid className="px-5 bg-color1">
+  <Container className="p-5">
         <Row>
-          <Col md={5} className="p-5">
-            <Container>
-              <NetworkLogo fill="#fff" secondary="var(--color6)" />
+          <Col md={6}>
+            <Container className="w-75">
+              <NetworkLogo fill="#000" secondary="var(--color1)" />
             </Container>
           </Col>
-          <Col
-            md={7}
-            className="d-flex flex-column justify-content-center text-white"
-          >
-            <h2 className="text-center">
-              WHO WILL
-              <strong> TAKE A STAND</strong>?
-            </h2>
-            <p>
-              We know that every Bible-believing church wants to follow the
-              command to care for those that feel orphaned, but often they don’t
-              know how or where to start. If the church doesn’t take a stand for
-              these children, then who will?
-            </p>
+
+          <Col className="d-flex align-items-center text-center">
+            <div>
+              <h5>
+                We hope to see 20,000 children in U.S. foster care being cared
+                for by our Assemblies of God churches and families.{" "}
+              </h5>
+
+              <div className="px-5">
+                <KidsIconsRow />
+              </div>
+            </div>
           </Col>
         </Row>
       </Container>
 
-      <Container className="py-5">
+
+
+      <Container className="py-0">
         <Row>
           <Col
             md={6}
@@ -69,6 +66,36 @@ const home = () => {
           </Col>
         </Row>
       </Container>
+
+
+
+
+      <Container fluid className="px-5 bg-color1">
+        <Row>
+          <Col md={5} className="p-5">
+            <Container>
+              <NetworkLogo fill="#fff" secondary="var(--color6)" />
+            </Container>
+          </Col>
+          <Col
+            md={7}
+            className="d-flex flex-column justify-content-center text-white"
+          >
+            <h2 className="text-center">
+              WHO WILL
+              <strong> TAKE A STAND</strong>?
+            </h2>
+            <p>
+              We know that every Bible-believing church wants to follow the
+              command to care for those that feel orphaned, but often they don’t
+              know how or where to start. If the church doesn’t take a stand for
+              these children, then who will?
+            </p>
+          </Col>
+        </Row>
+      </Container>
+
+  
 
       {/* <Container>
     <Row>
@@ -115,32 +142,14 @@ ministry at their church
         </Container>
       </Container>
 
-      <Container className="p-5">
-        <Row>
-          <Col md={6}>
-            <Container className="w-75">
-              <NetworkLogo fill="#000" secondary="var(--color1)" />
-            </Container>
-          </Col>
+    
 
-          <Col className="d-flex align-items-center text-center">
-            <div>
-              <h5>
-                We hope to see 20,000 children in U.S. foster care being cared
-                for by our Assemblies of God churches and families.{" "}
-              </h5>
-
-              <div className="px-5">
-                <KidsIconsRow />
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
 
       <Container className="p-1">
         <UsMap />
       </Container>
+
+
 
 <Container className="my-5">
       <Container className="w-25">

@@ -12,21 +12,18 @@ import signup from './pages/signup';
 import ForgotPassword from './pages/ForgotPassword';
 import pagenotfound from './pages/pagenotfound';
 import UpadateProfile from './pages/UpadateProfile';
+import dashboard from './pages/dashboard';
 
 // import { AuthProvider } from './util/Auth';
 
-function App({currentUser}) {
+function App() {
   return (
     <>
     <Router>
       <AuthProvider>
 
-    <div>
-    {!currentUser && <div>no user logged in</div>}
-</div>
-
     <header>
-    <MenuMain />
+    <MenuMain currentUser="currentUser" />
     </header>
 
 <Switch>
@@ -34,6 +31,7 @@ function App({currentUser}) {
     <Route path="/about" component={about} />
     <Route path="/signin" component={signin} />
     <PrivateRoute path="/profile" component={profile} />
+    <PrivateRoute path="/dashboard" component={dashboard} />
     <PrivateRoute path="/update-profile" component={UpadateProfile} />
     <Route path="/signup" component={signup} />
     <Route path="/forgot-password" component={ForgotPassword} />
