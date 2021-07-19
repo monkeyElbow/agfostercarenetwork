@@ -22,7 +22,16 @@ const home = () => {
           <Col className="d-flex align-items-center text-center">
             <div>
               <h5>
-                We hope to see 20,000 children in U.S. foster care being cared
+                We hope to see {" "}
+                
+               <span  style={{ color: "var(--color1)" }}>
+
+                <strong>
+                  20,000
+                  </strong>
+
+               </span>{" "}
+                 children in U.S. foster care being cared
                 for by our Assemblies of God churches and families.{" "}
               </h5>
 

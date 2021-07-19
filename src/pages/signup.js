@@ -60,6 +60,15 @@ async function handleSubmit(e) {
         <Form.Label>password confirmation</Form.Label>
         <Form.Control type="password" ref={passwordConfirmRef}></Form.Control>
     </Form.Group>
+
+
+{/* <Form.Group>
+        <Form.Label>City</Form.Label>
+        <Form.Control type="text" ></Form.Control>
+
+</Form.Group> */}
+
+
 <br />
 <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
 

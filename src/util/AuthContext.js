@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import { auth } from "./firebase";
+// import firestore from "./firestore"
 
 const AuthContext = React.createContext();
+// const db = React.createContext();
 
 export function useAuth() {
     return useContext(AuthContext)
@@ -13,6 +15,17 @@ export function AuthProvider({ children }) {
 
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
+
+// add collection
+
+        // .then(cred => {
+        //     return db.collection('users').doc(cred.user.uid).set({
+        //         bio: signupForm["signup-bio"].value
+        //     })
+        // })
+        // .then(() => {
+        // })
+
     }
 
     function signin(email, password) {

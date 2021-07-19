@@ -8,7 +8,7 @@ const { currentUser } = useAuth()
         <Route
           {...rest}  
           render={props => {
-            currentUser ? <Component {...props} /> : <Redirect to="/signin" />
+            return currentUser ? <Component {...props} /> : <Redirect to="/signin" />
           }}
         ></Route>
     )

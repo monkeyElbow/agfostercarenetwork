@@ -11,7 +11,7 @@ import profile from './pages/profile'
 import signup from './pages/signup';
 import ForgotPassword from './pages/ForgotPassword';
 import pagenotfound from './pages/pagenotfound';
-import UpadateProfile from './pages/UpadateProfile';
+import UpadateProfile from './pages/UpdateProfile';
 import dashboard from './pages/dashboard';
 
 // import { AuthProvider } from './util/Auth';
