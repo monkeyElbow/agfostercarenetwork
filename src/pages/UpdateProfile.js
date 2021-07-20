@@ -71,13 +71,13 @@ Promise.all(promises).then(() => {
         <Form.Control type="password" ref={passwordConfirmRef} placeholder="Leave blank to keep the same"></Form.Control>
     </Form.Group>
 
-    <Form.Group id="name">
+    {/* <Form.Group id="name">
         <Form.Label>Full Name</Form.Label>
         <Form.Control type="text" 
-        // ref={nameRef}
+        ref={nameRef}
         placeholder="First/Last Name"
         defaultValue={currentUser.name}></Form.Control>
-    </Form.Group>
+    </Form.Group> */}
 
 
 <Button disabled={loading} className="w-100" type="submit">Update</Button>
