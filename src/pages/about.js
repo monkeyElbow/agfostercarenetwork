@@ -4,6 +4,7 @@ import HomeHeartIcon from "../graphics/HomeHeartIcon";
 import Megaphone from "../graphics/Megaphone";
 import NetworkLogoHorz from "../graphics/NetworkLogoHorz";
 import Pram from "../graphics/Pram";
+import { Link } from "react-router-dom";
 
 export default function about() {
   return (
@@ -144,15 +145,26 @@ the church.
             <br />
    
         <h5>
+          <a
+          href="https://ag.org"
+          >
             <strong>
-
         The General Council of the Assemblies of God
-            </strong></h5>
+            </strong>
+          </a>
+            </h5>
 
             <h5>
 1445 N. Boonville Avenue
 Springfield, MO 65802-1894
         </h5>
+
+<a
+href="https://compact.family">
+        <small>
+        In collaboration with Assemblies of God Family Services Agency, DBA Compact Family Services
+        </small>
+</a>
 
 </Container>
 

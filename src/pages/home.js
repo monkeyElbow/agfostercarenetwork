@@ -1,4 +1,4 @@
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 
 import NetworkLogo from "../graphics/NetworkLogo";
 import UsMap from "../components/UsMap";
@@ -11,7 +11,7 @@ import KidsIconsRow from "../graphics/KidsIconsRow";
 const home = () => {
   return (
     <>
-  <Container className="p-5">
+  {/* <Container className="p-5">
         <Row>
           <Col md={6}>
             <Container className="w-75">
@@ -21,7 +21,7 @@ const home = () => {
 
           <Col className="d-flex align-items-center text-center">
             <div>
-              <h5>
+              <h3>
                 We hope to see {" "}
                 
                <span  style={{ color: "var(--color1)" }}>
@@ -33,7 +33,7 @@ const home = () => {
                </span>{" "}
                  children in U.S. foster care being cared
                 for by our Assemblies of God churches and families.{" "}
-              </h5>
+              </h3>
 
               <div className="px-5">
                 <KidsIconsRow />
@@ -41,18 +41,48 @@ const home = () => {
             </div>
           </Col>
         </Row>
+      </Container> */}
+
+
+ <Container className="p-5">
+
+            <Container className="w-50">
+              <NetworkLogo fill="#000" secondary="var(--color1)" />
+            </Container>
+
+         
+            <div>
+              <h3>
+                We hope to see {" "}
+                
+               <span  style={{ color: "var(--color1)" }}>
+
+                <strong>
+                  20,000
+                  </strong>
+
+               </span>{" "}
+                 children in U.S. foster care being cared
+                for by our Assemblies of God churches and families.{" "}
+              </h3>
+
+              <div className="px-5">
+                <KidsIconsRow />
+              </div>
+            </div>
+       
+     
       </Container>
 
 
-
-      <Container className="py-0">
+      <Container fluid className="py-0 text-white" style={{backgroundColor:"var(--color4"}}>
         <Row>
           <Col
             md={6}
             className="d-flex flex-column align-items-center justify-content-end"
           >
             <Container className="p-5">
-              <USMapSmall color="var(--color4)" />
+              <USMapSmall color="var(--color6)" />
             </Container>
 
             <h1 style={{ color: "var(--color1)" }}>
@@ -100,6 +130,23 @@ const home = () => {
               know how or where to start. If the church doesn’t take a stand for
               these children, then who will?
             </p>
+
+<div className="d-flex justify-content-center mb-5">
+
+            <Button
+            className="btn-lg w-50"
+            href="/signup" style={{
+              // backgroundColor:"var(--color4)",
+              backgroundColor:"#fff",
+              color:"var(--color1)"
+            }}
+            >
+              <strong>
+              Join Now
+              </strong>
+              </Button>
+              </div>
+
           </Col>
         </Row>
       </Container>
@@ -154,9 +201,9 @@ ministry at their church
     
 
 
-      <Container className="p-1">
         <UsMap />
-      </Container>
+      {/* <Container className="p-0">
+      </Container> */}
 
 
 

@@ -16,7 +16,25 @@ export function AuthProvider({ children }) {
     function signup(email, password) {
         return auth.createUserWithEmailAndPassword(email, password)
 
-// add collection
+
+
+        // effort to create user collection at same time of create user
+        // ref: https://stackoverflow.com/questions/50086515/firebase-document-for-each-user
+
+        // https://cloud.google.com/firestore/docs/manage-data/add-data
+        
+        //  https://www.youtube.com/watch?v=Z87OZtIYC_0 5:10
+
+//    function createUserDB(state) {
+// const currentUser = firebase.auth().currentUser;
+// const uid = currentUser.uid;
+// const userData = {lastLoginTime: new Date()}; // change to form data
+// return firebase.firestore().doc(`/users/${uid}`).set(userData)
+//    };   
+
+   
+
+// add collection effort 1. change bio to city state etc
 
         // .then(cred => {
         //     return db.collection('users').doc(cred.user.uid).set({

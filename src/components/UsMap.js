@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 export default function UsMap() {
 
-  const [selectedState, setSelectedState] = useState("US")
+  const [selectedState, setSelectedState] = useState("United States")
   const [numKids, setNumKids] = useState('410308')
   const [pdfLink, setPdfLink] = useState('')
 
@@ -269,65 +269,16 @@ export default function UsMap() {
 
   return (
     <>
+     
 
 
-
-
-            
-
-    <Container className="text-center py-4" style={{color:"var(--color4"}}>
-        <h1>
-          <strong>
-{selectedState}
-          </strong>
-        </h1>
-
-        <h5>Kids in Foster Care:{" "}
-          <NumberFormat 
-  value={numKids}
-  displayType="text"
-  thousandSeparator={true}
-/>
-</h5>
-
-
-        <h3>Network 5% Target:{" "}
-          <strong>
-            <NumberFormat 
-            value={Math.ceil(numKids * .05)}
-            displayType="text"
-            thousandSeparator={true}
-            />
-         
-            </strong>
-          </h3>
-{!pdfLink && <div>
-  Click on states for more state info
-  </div>}
-
-
-{pdfLink && <div>
- <small>
-  <a 
-  role="button"
-  target="_blank" 
-  rel="noopener noreferrer"
-  href={pdfLink}>
-{selectedState} Casesy Family Fact Sheet PDF
-  </a>
-      </small>
-  
-  </div>}
-          
-
-    </Container>
+     <Container className="p-3">
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 961.8 582.6" 
     height="100%"
     width="100%"
       >
 
-     
   <path
   id="HI"
   onClick={() => setHI()}
@@ -951,6 +902,68 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
       </svg>
 
 
+
+</Container>
+
+
+
+
+
+
+
+
+
+
+
+      <Container fluid className="text-center py-2 text-white" style={{backgroundColor:"var(--color4"}}>
+        <h1>
+          <strong>
+{selectedState}
+          </strong>
+        </h1>
+
+        <h5 style={{lineHeight:".1rem"}}>Kids in Foster Care:{" "}
+          <NumberFormat 
+  value={numKids}
+  displayType="text"
+  thousandSeparator={true}
+/>
+</h5>
+
+
+        <h3>Network 5% Target:{" "}
+          <strong>
+            <NumberFormat 
+            value={Math.ceil(numKids * .05)}
+            displayType="text"
+            thousandSeparator={true}
+            />
+         
+            </strong>
+          </h3>
+{!pdfLink && <div>
+  Click on states for more state info
+  </div>}
+
+
+{pdfLink && <div>
+ <small>
+  <a 
+  role="button"
+  target="_blank" 
+  rel="noopener noreferrer"
+  href={pdfLink}>
+{selectedState} Casey Foundation Fact Sheet PDF
+  </a>
+      </small>
+  
+  </div>}
+          
+
+    </Container>
+
+
+{/* {currentUser } */}
       <Container className="p-4 text-center">
 
 <h5>
