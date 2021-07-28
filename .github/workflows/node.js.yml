@@ -25,7 +25,7 @@ jobs:
     - name: FTP-Deploy-Action
       uses: SamKirkland/FTP-Deploy-Action@4.1.0
       with:
-        server: ftp.agfostercare.network
+        server: 173.201.181.128
         username: ${{ secrets.ftp_user }}
         password: ${{ secrets.ftp_password }}
         local-dir : build/

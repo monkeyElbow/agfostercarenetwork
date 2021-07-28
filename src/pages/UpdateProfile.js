@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 import { db } from "../util/firebase";
+import { Link } from "react-router-dom";
 
 export default function UpdateProfile() {
   const { currentUser } = useAuth();
@@ -91,15 +92,32 @@ export default function UpdateProfile() {
 
       {currentProfile.length > 0 ? (
         <Form onSubmit={updateProfile}>
+        
+         <Row>
+           <Col>
           <Form.Group className="mt-3">
-            <Form.Label>Full Name</Form.Label>
+            <Form.Label>First Name</Form.Label>
             <Form.Control
               type="text"
-              id="name"
-              defaultValue={currentProfile[0].name}
+              id="first_name"
+              defaultValue={currentProfile[0].first_name}
               required
-            ></Form.Control>
+              ></Form.Control>
           </Form.Group>
+              </Col>
+
+              <Col>
+          <Form.Group className="mt-3">
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              type="text"
+              id="last_name"
+              defaultValue={currentProfile[0].last_name}
+              required
+              ></Form.Control>
+          </Form.Group>
+              </Col>
+            </Row>
         
           <Form.Group className="mt-3 bg-light p-3 border">
             <Row>
@@ -335,7 +353,7 @@ I am a foster parent.
 
 
 <Form.Group className="mt-3 bg-light p-3 border">
-    <Form.Label>My church of attendence</Form.Label>
+    <Form.Label>The Name of my Church</Form.Label>
     <Form.Control id="church" type="text" defaultValue={currentProfile[0].church}></Form.Control>
 
     <br />
@@ -391,7 +409,7 @@ I am a foster parent.
 
 <Form.Group className="mt-3">
     <Form.Label>Comments about you or your organization</Form.Label>
-    <Form.Control style={{height:"150px"}} id="comments" type="text"
+    <Form.Control as="textarea" rows="4" id="comments" type="text"
     defaultValue={currentProfile[0].comments}
     ></Form.Control>
 </Form.Group>
@@ -405,7 +423,9 @@ I am a foster parent.
           </Button>
         </Form>
       ) : (
-        <h4>Cannot load profile at this time.</h4>
+        <Link to="/create-profile">
+        <h5>No profile found yet. Let's create create one!</h5>
+        </Link>
       )}
 
       {success && (

@@ -26,7 +26,7 @@ export default function CreateProfile() {
   const [loading, setLoading] = useState(false);
   // const [profiles, setProfiles] = useState([]);
   // const [currentProfile, setCurrentProfile] = useState([]);
-  // const [success, setSuccess] = useState(false);
+  const [success, setSuccess] = useState(false);
 
 
   // SAVING PROFILE INFO CODE //
@@ -43,6 +43,8 @@ export default function CreateProfile() {
     }, {});
 
     db.collection("Users").doc(currentUser.uid).set(formData);
+
+    setSuccess(true)
   };
   // END SAVING PROFILE INFO CODE //
 
@@ -53,15 +55,32 @@ export default function CreateProfile() {
       <h2>Create your User Profile</h2>
       <br />
       <Form onSubmit={saveAnswer}>
+       
+      <Row>
+           <Col>
         <Form.Group>
-          <Form.Label>Full Name</Form.Label>
+          <Form.Label>First Name</Form.Label>
           <Form.Control
             required
-            id="name"
+            id="first_name"
             type="text"
-            placeholder="Full Name..."
-          ></Form.Control>
+            placeholder="First Name"
+            ></Form.Control>
         </Form.Group>
+            </Col>
+  
+          <Col>
+        <Form.Group>
+          <Form.Label>Last Name</Form.Label>
+          <Form.Control
+            required
+            id="last_name"
+            type="text"
+            placeholder="Last Name"
+            ></Form.Control>
+        </Form.Group>
+            </Col>
+          </Row>
 
         <Form.Group className="mt-3 bg-light p-3 border">
           <Form.Check
@@ -206,7 +225,7 @@ export default function CreateProfile() {
 
 
 <Form.Group className="mt-3 bg-light p-3 border">
-    <Form.Label>My church of attendence</Form.Label>
+    <Form.Label>The Name of My church</Form.Label>
     <Form.Control id="church" type="text"></Form.Control>
 
           <Form.Check className="mt-2"
@@ -238,7 +257,7 @@ export default function CreateProfile() {
 
 <Form.Group className="mt-3">
     <Form.Label>Comments about you or your organization</Form.Label>
-    <Form.Control style={{height:"150px"}} id="comments" type="text"></Form.Control>
+    <Form.Control as="textarea" rows="4" id="comments" type="text"></Form.Control>
 </Form.Group>
 
 
@@ -286,10 +305,11 @@ export default function CreateProfile() {
       </Form>
       ) : (<h1>no profiles yet</h1>)}
       
+    */}
       
       {success && (
         <div className="alert alert-success" style={{padding: "20px", marginTop: "25px"}}>Your profile has been updated!</div>
-      )} */}
+      )} 
     </div>
   );
 }

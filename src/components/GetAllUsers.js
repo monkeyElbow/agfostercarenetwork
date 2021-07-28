@@ -1,6 +1,6 @@
 import { db } from "../util/firebase";
 // import { useAuth } from "../util/AuthContext";
-import { Card, Container } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
 export default function GetAllUsers() {
@@ -76,26 +76,32 @@ export default function GetAllUsers() {
 
       <Container>
         {profiles.length > 0 ? (
+          
           profiles.map((profile) => (
-            <Container className="p-3" key={profile.key}>
+           
+           <Row className="m-3 row-cols-1 p-0" key={profile.key}>
+             
+             <Col className="col">
+
               <Card>
                 <Card.Header
-                  className="text-white pt-3"
-                  style={{ backgroundColor: "var(--color1)", color: "#000" }}
-                >
-                  <h4>{profile.name}</h4>
+                  className="pt-3"
+                  // style={{ backgroundColor: "var(--color1)", color: "#000" }}
+                  >
+                  <h5>{profile.first_name}{' '}{profile.last_name}</h5>
                 </Card.Header>
+
                 <Card.Body className="p-3">
                   {profile.org !== "" && (
                     <Card.Subtitle>Organization: {profile.org}</Card.Subtitle>
-                  )}
+                    )}
                   <p>
                     Organization Website:{" "}
                     <a
                       rel="noopener noreferrer"
                       target="_blank"
                       href={`https://${profile.org_url}`}
-                    >
+                      >
                       {profile.org_url}
                     </a>
                   </p>
@@ -108,7 +114,7 @@ export default function GetAllUsers() {
                       rel="noopener noreferrer"
                       target="_blank"
                       href={`https://${profile.social_media}`}
-                    >
+                      >
                       {profile.social_media}
                     </a>
                   </p>
@@ -121,8 +127,15 @@ export default function GetAllUsers() {
                   {profile.comments && <p>{profile.comments}</p>}
                 </Card.Body>
               </Card>
-            </Container>
+        </Col>
+            </Row>
           ))
+
+
+
+
+
+
         ) : (
           <h5>no profiles found</h5>
         )}
