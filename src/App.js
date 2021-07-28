@@ -9,7 +9,7 @@ import about from './pages/about.js';
 import signin from './pages/signin';
 import profile from './pages/profile'
 import signup from './pages/signup';
-import forgotPassword from './pages/forgotPassword';
+// import forgotPassword from './pages/forgotPassword';
 import pagenotfound from './pages/pagenotfound';
 import contact from './pages/contact';
 import CreateProfile from './pages/createProfile';
@@ -47,7 +47,7 @@ function App() {
     <PrivateRoute path="/create-profile" component={CreateProfile} />
     <PrivateRoute path="/update-profile" component={UpdateProfile} />
     <Route path="/signup" component={signup} />
-    <Route path="/forgot-password" component={forgotPassword} />
+    {/* <Route path="/forgot-password" component={forgotPassword} /> */}
     <Route component={pagenotfound} />
 
 </Switch>
