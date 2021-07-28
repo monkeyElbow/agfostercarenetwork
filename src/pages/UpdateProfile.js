@@ -10,6 +10,8 @@ export default function UpdateProfile() {
 
   // FETCH PROFILES CODE //
   const [loading, setLoading] = useState(true);
+  
+  // eslint-disable-next-line
   const [profiles, setProfiles] = useState([]);
   const [currentProfile, setCurrentProfile] = useState([]);
   const [success, setSuccess] = useState(false);
