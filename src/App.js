@@ -13,7 +13,7 @@ import signup from './pages/signup';
 import pagenotfound from './pages/pagenotfound';
 import contact from './pages/contact';
 import CreateProfile from './pages/createProfile';
-import UpdateProfile from './pages/updateProfile';
+import UpdateProfile from './pages/UpdateProfile';
 import dashboard from './pages/dashboard';
 import mapPage from './pages/mapPage';
 import Footer from './components/Footer';
