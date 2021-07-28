@@ -9,12 +9,17 @@ import about from './pages/about.js';
 import signin from './pages/signin';
 import profile from './pages/profile'
 import signup from './pages/signup';
-import ForgotPassword from './pages/ForgotPassword';
+import forgotPassword from './pages/forgotPassword';
 import pagenotfound from './pages/pagenotfound';
-import UpadateProfile from './pages/UpdateProfile';
+import contact from './pages/contact';
+import CreateProfile from './pages/createProfile';
+import UpdateProfile from './pages/updateProfile';
 import dashboard from './pages/dashboard';
+import mapPage from './pages/mapPage';
+import Footer from './components/Footer';
+import updatePassword from './pages/updatePassword';
+import networkPage from './pages/networkPage';
 
-// import { AuthProvider } from './util/Auth';
 
 function App() {
   return (
@@ -27,17 +32,28 @@ function App() {
     </header>
 
 <Switch>
+
     <Route exact path="/" component={home} />
+
+
     <Route path="/about" component={about} />
     <Route path="/signin" component={signin} />
+    <Route path="/contact" component={contact} />
+    <PrivateRoute path="/network" component={networkPage} />
     <PrivateRoute path="/profile" component={profile} />
+    <PrivateRoute path="/update-password" component={updatePassword} />
+    <PrivateRoute path="/map" component={mapPage} />
     <PrivateRoute path="/dashboard" component={dashboard} />
-    <PrivateRoute path="/update-profile" component={UpadateProfile} />
+    <PrivateRoute path="/create-profile" component={CreateProfile} />
+    <PrivateRoute path="/update-profile" component={UpdateProfile} />
     <Route path="/signup" component={signup} />
-    <Route path="/forgot-password" component={ForgotPassword} />
+    <Route path="/forgot-password" component={forgotPassword} />
     <Route component={pagenotfound} />
 
 </Switch>
+
+<Footer />
+
       </AuthProvider>
 
       </Router>

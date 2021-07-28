@@ -2,8 +2,13 @@ import NumberFormat from "react-number-format";
 import { Container } from "react-bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../util/AuthContext";
+// import GetAllUsers from "./GetAllUsers";
 
 export default function UsMap() {
+
+  const { currentUser } = useAuth()
+
 
   const [selectedState, setSelectedState] = useState("United States")
   const [numKids, setNumKids] = useState('410308')
@@ -915,14 +920,23 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
 
 
 
-      <Container fluid className="text-center py-2 text-white" style={{backgroundColor:"var(--color4"}}>
-        <h1>
+        <h1 style={{
+          lineHeight:"1.5rem", 
+          color:"var(--color4)",
+          fontSize:"2.5rem",
+          textAlign:"center",
+          // paddingLeft:"2rem",
+          textTransform:"uppercase",
+          }}>
           <strong>
 {selectedState}
           </strong>
         </h1>
 
-        <h5 style={{lineHeight:".1rem"}}>Kids in Foster Care:{" "}
+      <Container fluid className="p-4 text-white text-center" style={{backgroundColor:"var(--color4"}}>
+
+        <h5 style={{lineHeight:".1rem"}}>
+          {selectedState} Kids in Foster Care:{" "}
           <NumberFormat 
   value={numKids}
   displayType="text"
@@ -931,7 +945,7 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
 </h5>
 
 
-        <h3>Network 5% Target:{" "}
+        <h1>Network 5% Target:{" "}
           <strong>
             <NumberFormat 
             value={Math.ceil(numKids * .05)}
@@ -940,10 +954,11 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
             />
          
             </strong>
-          </h3>
-{!pdfLink && <div>
-  Click on states for more state info
-  </div>}
+          </h1>
+          
+{!pdfLink && <p>
+  Click on states for specific info
+  </p>}
 
 
 {pdfLink && <div>
@@ -956,21 +971,35 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
 {selectedState} Casey Foundation Fact Sheet PDF
   </a>
       </small>
-  
   </div>}
           
 
+
+
     </Container>
 
+{currentUser && <Container className="mt-5">
 
-{/* {currentUser } */}
-      <Container className="p-4 text-center">
+{/* <GetAllUsers /> */}
 
-<h5>
-<Link to="/signup">Sign up to join the network if you are an AG Foster Care resource or Foster Care parent.</Link>
-</h5>
+  </Container>}
 
-</Container>
+
+
+
+
+
+
+{!currentUser && 
+ <Container className="p-4 text-center">
+
+ <h5>
+ <Link to="/signup">Sign up to join the network if you are an AG Foster Care resource or Foster Care parent.</Link>
+ </h5>
+ 
+ </Container>
+ }
+     
 
 
     </>

@@ -11,38 +11,7 @@ import KidsIconsRow from "../graphics/KidsIconsRow";
 const home = () => {
   return (
     <>
-  {/* <Container className="p-5">
-        <Row>
-          <Col md={6}>
-            <Container className="w-75">
-              <NetworkLogo fill="#000" secondary="var(--color1)" />
-            </Container>
-          </Col>
-
-          <Col className="d-flex align-items-center text-center">
-            <div>
-              <h3>
-                We hope to see {" "}
-                
-               <span  style={{ color: "var(--color1)" }}>
-
-                <strong>
-                  20,000
-                  </strong>
-
-               </span>{" "}
-                 children in U.S. foster care being cared
-                for by our Assemblies of God churches and families.{" "}
-              </h3>
-
-              <div className="px-5">
-                <KidsIconsRow />
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container> */}
-
+ 
 
  <Container className="p-5">
 
@@ -85,23 +54,23 @@ const home = () => {
               <USMapSmall color="var(--color6)" />
             </Container>
 
-            <h1 style={{ color: "var(--color1)" }}>
+            <h1 className="display-2" style={{ color: "var(--color1)" }}>
               <strong>400,000</strong>
             </h1>
-            <p>
+            <h4>
               children in <strong>foster care</strong>
-            </p>
+            </h4>
           </Col>
           <Col className="d-flex flex-column align-items-center justify-content-end">
             <Container className="p-5">
               <ChildIcons color="var(--color3)" />
             </Container>
-            <h1 style={{ color: "var(--color1)" }}>
+            <h1 className="display-2" style={{ color: "var(--color1)" }}>
               <strong>100,000</strong>
             </h1>
-            <p>
+            <h4>
               children <strong>ready for adoption</strong>
-            </p>
+            </h4>
           </Col>
         </Row>
       </Container>
@@ -109,9 +78,9 @@ const home = () => {
 
 
 
-      <Container fluid className="px-5 bg-color1">
+      <Container fluid className="p-5 bg-color1">
         <Row>
-          <Col md={5} className="p-5">
+          <Col md={5} className="p-4">
             <Container>
               <NetworkLogo fill="#fff" secondary="var(--color6)" />
             </Container>
@@ -138,7 +107,8 @@ const home = () => {
             href="/signup" style={{
               // backgroundColor:"var(--color4)",
               backgroundColor:"#fff",
-              color:"var(--color1)"
+              color:"var(--color1)",
+              border:0
             }}
             >
               <strong>

@@ -1,98 +1,437 @@
-import { useState, useRef } from "react";
-import { useHistory } from "react-router-dom";
-import { Container, Card, Button, Form, Alert } from "react-bootstrap";
+import { useState } from "react";
+// import { useHistory } from "react-router-dom";
+import { Button, Form, Row, Col } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
-
+import { db } from "../util/firebase";
 
 export default function UpdateProfile() {
+  const { currentUser } = useAuth();
 
-const emailRef = useRef()
-// name added
-// const nameRef = useRef()
-const passwordRef = useRef()
-const passwordConfirmRef = useRef()
-const {currentUser, updatePassword, updateEmail } = useAuth()
-const [error, setError] = useState('')
-const [loading, setLoading] = useState(false)
-const history = useHistory()
+  // SAVING PROFILE INFO CODE //
+  const saveAnswer = (event) => {
+    event.preventDefault();
+    const elementsArray = [...event.target.elements];
+    const formData = elementsArray.reduce((accumulator, currentValue) => {
+      if (currentValue.id) {
+        accumulator[currentValue.id] = currentValue.value;
+      }
 
-function handleSubmit(e) {
-    e.preventDefault()
+      return accumulator;
+    }, {});
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-        return setError('Passwords do not match')
-    }
-const promises = []
-setLoading(true)
-setError('')
+    db.collection("Users").doc(currentUser.uid).set(formData);
+  };
+  // END SAVING PROFILE INFO CODE //
 
-    if(emailRef.current.value !== currentUser.email) {
-        promises.push(updateEmail(emailRef.current.value))
-    }
-if(passwordRef.current.value) {
-    promises.push(updatePassword(passwordRef.current.value))
-}
+  // FETCH PROFILES CODE //
+  const [loading, setLoading] = useState(true);
+  const [profiles, setProfiles] = useState([]);
+  const [currentProfile, setCurrentProfile] = useState([]);
+  const [success, setSuccess] = useState(false);
+
+  useState(() => {
+    const getProfilesFromFirebase = [];
+    const getCurrentProfileFromFirebase = [];
+    const subscriber = db
+      .collection("Users")
+      .get(currentUser.uid)
+      .then((querySnapshot) => {
+        if (getProfilesFromFirebase.length < 1) {
+          querySnapshot.forEach((doc) => {
+            getProfilesFromFirebase.push({
+              ...doc.data(), //spread operator
+              key: doc.id, // 'id' given to us by Firebase
+            });
+            const currentDoc = doc.data();
+            if (currentDoc.uid === currentUser.uid) {
+              getCurrentProfileFromFirebase.push({
+                ...doc.data(), //spread operator
+                key: doc.id, // 'id' given to us by Firebase
+              });
+            }
+          });
+          setProfiles(getProfilesFromFirebase);
+          setCurrentProfile(getCurrentProfileFromFirebase);
+          setLoading(false);
+        }
+      }, []);
+
+    // return cleanup function
+    return subscriber;
+  }, [loading, currentUser, currentProfile]); // empty dependencies array => useEffect only called once
+
+  // UPDATE EXISTING PROFILE //
+  const updateProfile = (event) => {
+    event.preventDefault();
+
+    // Collect the form data.
+    const elementsArray = [...event.target.elements];
+    const formData = elementsArray.reduce((accumulator, currentValue) => {
+      if (currentValue.id) {
+        accumulator[currentValue.id] = currentValue.value;
+      }
+
+      return accumulator;
+    }, {});
+
+    const getCurrentProfileFromFirebase = [];
+    db.collection("Users")
+      .get(currentUser.uid)
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          const currentDoc = doc.data();
+          if (currentDoc.uid === currentUser.uid) {
+            getCurrentProfileFromFirebase.push({
+              ...doc.data(), //spread operator
+              key: doc.id, // 'id' given to us by Firebase
+            });
+          }
+        });
+        var currentProfileRef = db
+          .collection("Users")
+          .doc(getCurrentProfileFromFirebase[0].key);
+        currentProfileRef.update(formData);
+      });
+
+    setSuccess(true);
+  };
+
+  if (loading) {
+    return <h5>loading data...</h5>;
+  }
+  // END UPDATE EXISTING PROFILE //
+
+  return (
+    <div style={{ margin: "75px" }}>
+      <h1>Update Your profile</h1>
+
+      {currentProfile.length > 0 ? (
+        <Form onSubmit={updateProfile}>
+          <Form.Group className="mt-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              type="text"
+              id="name"
+              defaultValue={currentProfile[0].name}
+              required
+            ></Form.Control>
+          </Form.Group>
+        
+          <Form.Group className="mt-3 bg-light p-3 border">
+            <Row>
+              <Col sm={6}>
+              <p>I attend or am part of an Assemblies of God ministry or organization.</p>
+              </Col>
+              <Col sm={3}>
+              <Form.Control as="select" id="ag_affiliated" defaultValue={currentProfile[0].ag_affiliated}>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+              </Form.Control>
+              </Col>
+            </Row>
+            {/* {currentProfile[0].ag_affiliated === "true" && (
+              <Form.Check
+                id="ag_affiliated"
+                label="I attend or am part of an Assemblies of God ministry or organization."
+                defaultValue={currentProfile[0].ag_affiliated}
+                type="checkbox"
+                defaultChecked="checked"
+                onChange={toggleAffiliated}
+              />
+            )}
+            {currentProfile[0].ag_affiliated !== "true" && (
+              <Form.Check
+                id="ag_affiliated"
+                label="I attend or am part of an Assemblies of God ministry or organization."
+                defaultValue={currentProfile[0].ag_affiliated}
+                type="checkbox"
+                onChange={toggleAffiliated}
+              />
+            )} */}
+          </Form.Group>
+
+          <Form.Group className="mt-3 bg-light p-3 border">
+<Row>
+  <Col sm={8} className="d-flex align-items-center">
+  <p>I am an Assemblies of God credentialed minister.</p>
+  </Col>
+  <Col sm={3}>
+<Form.Control id="ag_credentialed" as="select" defaultValue={currentProfile[0].ag_credentialed}>
+  <option value="true">Yes</option>
+  <option value="false">No</option>
+</Form.Control>
+  </Col>
+</Row>
+
+            {/* {currentProfile[0].ag_credentialed !== "true" && (
+              <Form.Check
+                id="ag_credentialed"
+                label="I am an Assemblies of God credentialed minister."
+                defaultValue={currentProfile[0].ag_credentialed}
+                type="checkbox"
+                // checked="checked"
+                onChange={toggleCredentialed}
+              />
+            )}
+            {currentProfile[0].ag_credentialed === "true" && (
+              <Form.Check
+                id="ag_credentialed"
+                label="I am an Assemblies of God credentialed minister."
+                defaultValue={currentProfile[0].ag_credentialed}
+                type="checkbox"
+                // checked="checked"
+                onChange={toggleCredentialed}
+              />
+            )} */}
+          </Form.Group>
+
+          <Form.Group className="mt-3 bg-light p-3 border">
+<Row>
+<Col sm={3} className="d-flex align-items-center">
+<p>
+I am a foster parent.
+</p>
+</Col>
+  <Col sm={3}>
+<Form.Control as="select" id='fosterParent' defaultValue={currentProfile[0].fosterParent}>
+  <option value="true">Yes</option>
+  <option value="false">No</option>
+</Form.Control>
+  </Col>
+</Row>
+
+            {/* {currentProfile[0].fosterParent === "true" && (
+              <Form.Control
+              inline
+              id="fosterParent"
+                label="I am a foster parent."
+                defaultValue={currentProfile[0].fosterParent}
+                type="checkbox"
+                checked="checked"
+                onChange={togglefosterParent}
+              />
+            )}
+            {currentProfile[0].fosterParent !== "true" && (
+              <Form.Control
+                inline
+                id="fosterParent"
+                label="I am a foster parent."
+                defaultValue={currentProfile[0].fosterParent}
+                type="checkbox"
+                // checked="checked"
+                onChange={togglefosterParent}
+              />
+            )} */}
+
+            <Row className="mt-3">
+              <Col md={10}>
+                <Form.Label>
+                  Number of foster children in my home this year.
+                  <small> (Kindship and non-kinship)</small>
+                </Form.Label>
+              </Col>
+              <Col>
+                <Form.Control
+                  inline
+                  id="numberOfFosterKids"
+                  type="number"
+                  defaultValue={currentProfile[0].numberOfFosterKids}
+                ></Form.Control>
+              </Col>
+            </Row>
+          </Form.Group>
+
+          <Form.Group className="mt-3">
+          <Form.Label>Street Address</Form.Label>
+          <Form.Control
+            id="street_address"
+            type="text"
+            defaultValue={currentProfile[0].street_address}
+            placeholder="Street Address"
+          ></Form.Control>
+        </Form.Group>
 
 
-Promise.all(promises).then(() => {
-    history.push('/')
-}).catch(() => {
-    setError('Failed to update account')
-}).finally(() => {
-    setLoading(false)
-})
 
-}
+        <Form.Group className="mt-3">
+            <Row>
+                <Col>
+          <Form.Label>City</Form.Label>
+          <Form.Control id="city" type="text" placeholder="City"
+          defaultValue={currentProfile[0].city}
+          ></Form.Control>
 
-    return(
-        <>
-        {error && <Alert variant="danger" className="mb-4 text-center">{error}</Alert>}
+                </Col>
+                <Col>
+          <Form.Label>State</Form.Label>
+          <Form.Control required id="state" as="select"
+          defaultValue={currentProfile[0].state}
+          >
+            <option value="AL">Alabama</option>
+            <option value="AK">Alaska</option>
+            <option value="AZ">Arizona</option>
+            <option value="AR">Arkansas</option>
+            <option value="CA">California</option>
+            <option value="CO">Colorado</option>
+            <option value="CT">Connecticut</option>
+            <option value="DE">Delaware</option>
+            <option value="DC">District Of Columbia</option>
+            <option value="FL">Florida</option>
+            <option value="GA">Georgia</option>
+            <option value="HI">Hawaii</option>
+            <option value="ID">Idaho</option>
+            <option value="IL">Illinois</option>
+            <option value="IN">Indiana</option>
+            <option value="IA">Iowa</option>
+            <option value="KS">Kansas</option>
+            <option value="KY">Kentucky</option>
+            <option value="LA">Louisiana</option>
+            <option value="ME">Maine</option>
+            <option value="MD">Maryland</option>
+            <option value="MA">Massachusetts</option>
+            <option value="MI">Michigan</option>
+            <option value="MN">Minnesota</option>
+            <option value="MS">Mississippi</option>
+            <option value="MO">Missouri</option>
+            <option value="MT">Montana</option>
+            <option value="NE">Nebraska</option>
+            <option value="NV">Nevada</option>
+            <option value="NH">New Hampshire</option>
+            <option value="NJ">New Jersey</option>
+            <option value="NM">New Mexico</option>
+            <option value="NY">New York</option>
+            <option value="NC">North Carolina</option>
+            <option value="ND">North Dakota</option>
+            <option value="OH">Ohio</option>
+            <option value="OK">Oklahoma</option>
+            <option value="OR">Oregon</option>
+            <option value="PA">Pennsylvania</option>
+            <option value="RI">Rhode Island</option>
+            <option value="SC">South Carolina</option>
+            <option value="SD">South Dakota</option>
+            <option value="TN">Tennessee</option>
+            <option value="TX">Texas</option>
+            <option value="UT">Utah</option>
+            <option value="VT">Vermont</option>
+            <option value="VA">Virginia</option>
+            <option value="WA">Washington</option>
+            <option value="WV">West Virginia</option>
+            <option value="WI">Wisconsin</option>
+            <option value="WY">Wyoming</option>
+          </Form.Control>
+          </Col>
+          <Col>
 
-<Container className="my-3 d-flex justify-content-center">
-
-        <Card className="w-100" style={{maxWidth: "400px"}}>
-
-            <Card.Body>
-<h2>Update Profile</h2>
-
-<Form onSubmit={handleSubmit}>
-    <Form.Group id="email">
-        <Form.Label>Email</Form.Label>
-        <Form.Control type="email" ref={emailRef} required defaultValue={currentUser.email}></Form.Control>
-    </Form.Group>
-
-    <Form.Group id="password">
-        <Form.Label>password</Form.Label>
-        <Form.Control type="password" ref={passwordRef} placeholder="Leave blank to keep the same"></Form.Control>
-    </Form.Group>
-
-    <Form.Group id="password-confirm">
-        <Form.Label>password confirmation</Form.Label>
-        <Form.Control type="password" ref={passwordConfirmRef} placeholder="Leave blank to keep the same"></Form.Control>
-    </Form.Group>
-
-    {/* <Form.Group id="name">
-        <Form.Label>Full Name</Form.Label>
-        <Form.Control type="text" 
-        ref={nameRef}
-        placeholder="First/Last Name"
-        defaultValue={currentUser.name}></Form.Control>
-    </Form.Group> */}
+          <Form.Label>Zip Code</Form.Label>
+          <Form.Control
+            id="user_zip"
+            type="text"
+            placeholder="Zip"
+            defaultValue={currentProfile[0].user_zip}
+            ></Form.Control>
+            </Col>
+        </Row>
+        </Form.Group>
 
 
-<Button disabled={loading} className="w-100" type="submit">Update</Button>
-</Form>
+        <Form.Group className="mt-3">
+    <Form.Label>Social Media</Form.Label>
+    <Row>
+        <Col md={1} className="d-flex align-items-center">
+        <small>https://</small>
+        </Col>
+        <Col>
+    <Form.Control id="social_media" type="text" placeholder="URL"
+    defaultValue={currentProfile[0].social_media}
+    ></Form.Control>
+        </Col>
+    </Row>
+</Form.Group>
 
-            </Card.Body>
 
 
-        </Card>
+<Form.Group className="mt-3 bg-light p-3 border">
+    <Form.Label>My church of attendence</Form.Label>
+    <Form.Control id="church" type="text" defaultValue={currentProfile[0].church}></Form.Control>
+
+    <br />
+
+<Row>
+  <Col sm={6}>
+    <p>My church is an Assemblies of God church.</p>
+  </Col>
+  <Col sm={3}>
+<Form.Control as="select" id="ag_church" defaultValue={currentProfile[0].ag_church}>
+<option value="true">Yes</option>
+<option value="false">No</option>
+</Form.Control>
+  </Col>
+</Row>
+{/* {currentProfile[0].ag_church === "true" &&
+          <Form.Check className="mt-2"
+          id="ag_church"
+          label="My church is an Assemblies of God church"
+          value="true"
+          type="checkbox"
+          checked="checked"
+          />
+        }
+{currentProfile[0].ag_church !== "true" &&
+          <Form.Check className="mt-2"
+          id="ag_church"
+          label="My church is an Assemblies of God church"
+          value="false"
+          type="checkbox"
+          />
+        } */}
+
+        </Form.Group>
 
 
-{/* <p>Already have an account?</p>
-<Link to="/">Cancel</Link> */}
+        <Form.Group className="mt-3 bg-light p-3 border">
+    <Form.Label>My Assemblies of God organization and employer</Form.Label>
+    <Form.Control id="org" type="text" 
+    defaultValue={currentProfile[0].org}></Form.Control>
 
-</Container>
-        </>
-    )
+    <Form.Label className="mt-3">Organization website URL</Form.Label>
+    <Row>
+        <Col md={1} className="d-flex align-items-center">
+        <small>https://</small>
+        </Col>
+        <Col>
+    <Form.Control id="org_url" defaultValue={currentProfile[0].org_url} type="text" placeholder="URL"></Form.Control>
+        </Col>
+    </Row>
+</Form.Group>
+
+
+<Form.Group className="mt-3">
+    <Form.Label>Comments about you or your organization</Form.Label>
+    <Form.Control style={{height:"150px"}} id="comments" type="text"
+    defaultValue={currentProfile[0].comments}
+    ></Form.Control>
+</Form.Group>
+
+
+
+          <Form.Control type="hidden" id="email" defaultValue={currentUser.email}></Form.Control>
+
+          <Button className="mt-4" disabled={loading} type="submit">
+            Update Profile
+          </Button>
+        </Form>
+      ) : (
+        <h1>no profile found</h1>
+      )}
+
+      {success && (
+        <div
+          className="alert alert-success"
+          style={{ padding: "20px", marginTop: "25px" }}
+        >
+          Your profile has been updated!
+        </div>
+      )}
+    </div>
+  );
 }

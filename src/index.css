@@ -38,7 +38,40 @@ code {
   background-color: var(--color1);
 }
 
+/* MENU MAIN & FOOTER*/
+.menuMain {
+  background-color: black;
+  color: #fff;
+}
 
+.menuMain a {
+  font-weight: bold;
+  color: white;
+  padding: 15px 10px 10px 10px;
+  text-decoration: none;
+  margin: auto;
+  transition: 0.75s;
+}
+
+.menuMain a:hover{
+  color:#777
+}
+.menuMain a:active,  .menuFooter a:active {
+  color:var(--color2)
+}
+
+
+.menuFooter a {
+  color:white;
+  text-decoration: none;
+  transition: 0.75s;
+  }
+
+.menuFooter a:hover {
+  color:var(--color2)
+}
+
+/* END MENUS AND FOOTERS */
 
 
 /* map css */

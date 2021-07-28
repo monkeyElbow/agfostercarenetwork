@@ -3,11 +3,11 @@ import { useState } from "react";
 import { useAuth } from "../util/AuthContext";
 
 import { Link, useHistory } from "react-router-dom";
-import "../styles/menuMain.css"
 
 
 export default function MenuMain() {
     
+
     const [error, setError] = useState("")
     const { currentUser, signout } = useAuth()
     const history = useHistory()
@@ -46,6 +46,12 @@ export default function MenuMain() {
 
 
 {currentUser &&
+<Link to="/network">
+Network
+</Link>
+}
+
+{currentUser &&
 <Link to="/dashboard">
 {currentUser.email}
 </Link>
@@ -53,7 +59,7 @@ export default function MenuMain() {
 
 
 {currentUser && 
-        <Link onClick={handleLogout}>
+        <Link to="/" onClick={handleLogout}>
         Sign Out
     </Link>
 }

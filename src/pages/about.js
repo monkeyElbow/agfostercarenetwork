@@ -4,7 +4,7 @@ import HomeHeartIcon from "../graphics/HomeHeartIcon";
 import Megaphone from "../graphics/Megaphone";
 import NetworkLogoHorz from "../graphics/NetworkLogoHorz";
 import Pram from "../graphics/Pram";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default function about() {
   return (
@@ -45,11 +45,11 @@ export default function about() {
             <h2 style={{ color: "var(--color4)" }}>
               <strong>Speak Up</strong>
             </h2>
-            <p>
+            <h4>
               Let’s pray for, preach about, teach on, and advocate for children
               and families in foster care and for our government and agency
               partners.
-            </p>
+            </h4>
           </Col>
         </Row>
         <Row>
@@ -60,10 +60,10 @@ export default function about() {
             <h2 style={{ color: "var(--color2)" }}>
               <strong>Donate for Physical Needs</strong>
             </h2>
-            <p>
+            <h4>
               Donate items to support foster care families, like - bunk beds,
               clothing, and meals.
-            </p>
+            </h4>
           </Col>
         </Row>
         <Row>
@@ -74,10 +74,10 @@ export default function about() {
             <h2 style={{ color: "var(--color5)" }}>
               <strong>Provide Support Services</strong>
             </h2>
-            <p>
+            <h4>
               Donate your time to provide babysitting, transportation, meals, or
               respite
-            </p>
+            </h4>
           </Col>
         </Row>
         <Row>
@@ -88,7 +88,7 @@ export default function about() {
             <h2 style={{ color: "var(--color1)" }}>
               <strong>Open Your Heart and Home</strong>
             </h2>
-            <p>Prayerfully consider being a foster or adoptive parent.</p>
+            <h4>Prayerfully consider being a foster or adoptive parent.</h4>
           </Col>
         </Row>
       </Container>
