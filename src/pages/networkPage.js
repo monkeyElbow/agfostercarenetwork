@@ -43,3 +43,7 @@ export default function NetworkPage() {
     </>
   );
 }
+
+
+
+// db.collection('Users').doc(user.uid).collection('name').onSnapshot((snapshot) => {...});

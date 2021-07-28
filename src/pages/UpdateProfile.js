@@ -7,22 +7,6 @@ import { db } from "../util/firebase";
 export default function UpdateProfile() {
   const { currentUser } = useAuth();
 
-  // SAVING PROFILE INFO CODE //
-  const saveAnswer = (event) => {
-    event.preventDefault();
-    const elementsArray = [...event.target.elements];
-    const formData = elementsArray.reduce((accumulator, currentValue) => {
-      if (currentValue.id) {
-        accumulator[currentValue.id] = currentValue.value;
-      }
-
-      return accumulator;
-    }, {});
-
-    db.collection("Users").doc(currentUser.uid).set(formData);
-  };
-  // END SAVING PROFILE INFO CODE //
-
   // FETCH PROFILES CODE //
   const [loading, setLoading] = useState(true);
   const [profiles, setProfiles] = useState([]);
@@ -421,7 +405,7 @@ I am a foster parent.
           </Button>
         </Form>
       ) : (
-        <h1>no profile found</h1>
+        <h4>Cannot load profile at this time.</h4>
       )}
 
       {success && (

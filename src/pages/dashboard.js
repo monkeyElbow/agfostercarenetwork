@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Card, Button, Alert } from "react-bootstrap";
+import { Container, Card, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../util/AuthContext";
 // import { db } from "../util/firebase";
@@ -62,6 +62,8 @@ export default function Dashboard() {
 
   return (
     <>
+    <Container className="my-3 d-flex flex-column justify-content-center">
+
       <Card>
         <Card.Body className="text-center mb-4">
           <h2>Dashboard</h2>
@@ -95,6 +97,7 @@ export default function Dashboard() {
           Delete account from AGFosterCare.network.
         </Button> */}
       </div>
+        </Container>
     </>
   );
 }
