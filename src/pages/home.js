@@ -1,5 +1,5 @@
-import { Container, Row, Col, Button } from "react-bootstrap";
-
+import { Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import NetworkLogo from "../graphics/NetworkLogo";
 import UsMap from "../components/UsMap";
 import NetworkLogoHorz from "../graphics/NetworkLogoHorz";
@@ -100,21 +100,22 @@ const home = () => {
               these children, then who will?
             </p>
 
-<div className="d-flex justify-content-center mb-5">
+<div className="text-center mb-5">
 
-            <Button
-            className="btn-lg w-50"
-            href="/signup" style={{
+            <Link
+            className="btn-lg btn-light w-50"
+            href="/signup" 
+            // style={{
               // backgroundColor:"var(--color4)",
-              backgroundColor:"#fff",
-              color:"var(--color1)",
-              border:0
-            }}
+              // backgroundColor:"#fff",
+              // color:"var(--color1)",
+              // border:0
+            // }}
             >
               <strong>
               Join Now
               </strong>
-              </Button>
+              </Link>
               </div>
 
           </Col>

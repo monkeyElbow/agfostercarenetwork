@@ -1,6 +1,6 @@
 import { useState } from "react";
 // import { useHistory } from "react-router-dom";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 import { db } from "../util/firebase";
 import { Link } from "react-router-dom";
@@ -420,9 +420,9 @@ I am a foster parent.
 
           <Form.Control type="hidden" id="email" defaultValue={currentUser.email}></Form.Control>
 
-          <Button className="mt-4" disabled={loading} type="submit">
+          <Link className="mt-4 btn btn-primary" disabled={loading} type="submit">
             Update Profile
-          </Button>
+          </Link>
         </Form>
       ) : (
         <Link to="/create-profile">

@@ -62,9 +62,11 @@ export default function Dashboard() {
 
   return (
     <>
-    <Container className="my-3 d-flex flex-column justify-content-center">
+    <Container className="my-3 d-flex flex-column align-items-center justify-content-center"
+    style={{minHeight:"84vh"}}
+    >
 
-      <Card>
+      <Card style={{maxWidth:"400px"}}>
         <Card.Body className="text-center mb-4">
           <h2>Dashboard</h2>
           <br />
@@ -90,7 +92,7 @@ export default function Dashboard() {
         </Card.Body>
       </Card>
       <div className="w-100 text-center mt-2">
-        <Button variant="link" onClick={handleLogout}>
+        <Button variant="link" className="link" onClick={handleLogout}>
           Sign Out
         </Button>
         {/* <Button variant="link" onClick={deleteAccount}>

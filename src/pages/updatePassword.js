@@ -1,6 +1,7 @@
+import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Card, Button, Form, Alert } from "react-bootstrap";
+import { Container, Card, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 
 
@@ -49,7 +50,9 @@ function handleSubmit(e) {
         <>
         {error && <Alert variant="danger" className="mb-4 text-center">{error}</Alert>}
 
-<Container className="my-3 d-flex justify-content-center">
+<Container className="my-3 d-flex flex-column align-items-center justify-content-center"
+    style={{minHeight:"84vh"}}
+>
 
         <Card className="w-100" style={{maxWidth: "400px"}}>
 
@@ -73,7 +76,7 @@ function handleSubmit(e) {
     </Form.Group>
 
 <br />
-<Button disabled={loading} className="w-100" type="submit">Update</Button>
+<Link disabled={loading} className="w-100 btn btn-primary" type="submit">Update</Link>
 </Form>
 
             </Card.Body>

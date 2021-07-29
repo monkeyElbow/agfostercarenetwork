@@ -72,12 +72,12 @@ async function handleSubmit(e) {
     </Form.Group>
 
 <br />
-<Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
+<Link disabled={loading} className="btn btn-primary w-100" type="submit">Sign Up</Link>
 
 </Form>
 
 <br />
-<p>Already have an account?{" "}<Link to="/signin">Sign in here</Link></p>
+<p>Already have an account?{" "}<Button variant="link" to="/signin" className="link">Sign in here</Button></p>
 
 
             </Card.Body>

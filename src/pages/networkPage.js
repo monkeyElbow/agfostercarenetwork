@@ -37,7 +37,9 @@ export default function NetworkPage() {
 
   return (
     <>
-      <Container className="py-5">
+      <Container className="py-5"
+    style={{minHeight:"86vh"}}
+            >
         <GetAllUsers />
       </Container>
     </>

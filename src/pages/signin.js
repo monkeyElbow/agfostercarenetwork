@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Container, Card, Button, Form, Alert } from "react-bootstrap";
+import { Container, Card, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 
 export default function Signin() {
@@ -51,7 +51,7 @@ export default function Signin() {
 
 <br />
 
-<Button disabled={loading} className="w-100" type="submit">Sign In</Button>
+<Link disabled={loading} className="btn btn-primary w-100" type="submit">Sign In</Link>
 </Form>
 
 <div className="w.100 text-center mt-3">

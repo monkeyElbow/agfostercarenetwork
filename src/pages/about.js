@@ -159,10 +159,11 @@ the church.
 Springfield, MO 65802-1894
         </h5>
 
+<br />
 <a
 href="https://compact.family">
         <small>
-        In collaboration with Assemblies of God Family Services Agency, DBA Compact Family Services
+        In collaboration with Assemblies of God Family Services Agency, dba COMP<strong style={{fontSize:"1rem"}}>ACT</strong> FAMILY SERVICES
         </small>
 </a>
 

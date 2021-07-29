@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import { useHistory } from "react-router-dom";
-import { Button, Form, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Form, Row, Col } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 import { db } from "../util/firebase";
 
@@ -265,9 +266,9 @@ export default function CreateProfile() {
 
         <input type="hidden" id="uid" value={currentUser.uid}></input>
 
-        <Button className="mt-4" disabled={loading} type="submit">
+        <Link className="mt-4 btn btn-primary" disabled={loading} type="submit">
           Create Profile
-        </Button>
+        </Link>
       </Form>
 
       {/* <h1>All Profiles:</h1>
