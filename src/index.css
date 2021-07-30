@@ -20,10 +20,10 @@ a, .link {
 }
 
 .link:hover, a:hover{
-  color:var(--color4)
+  color:var(--color3)
 }
 
-a.btn-primary {
+.btn-primary {
   background-color: var(--color1);
   outline-color: var(--color1);
   border-color: var(--color2);
@@ -31,11 +31,19 @@ a.btn-primary {
   transition: .5s
 }
 
-a.btn-primary:hover{
+.btn-primary:hover{
   background-color: var(--color3);
 }
+.btn-primary:focus{
+  color:var(--color1);
+  background-color: var(--color5);
+}
+.btn-primary:active{
+  color:var(--color1);
+  background-color: var(--color5);
+}
 
-a.btn-light:hover {
+.btn-light:hover {
  background-color: var(--color5);
 }
 
@@ -90,10 +98,12 @@ code {
 }
 
 
+/* footer */
 .menuFooter a {
   color:white;
   text-decoration: none;
   transition: 0.75s;
+  font-size: 0.75rem;
   }
 
 .menuFooter a:hover {

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import { Container, Card, Form, Alert } from "react-bootstrap";
+import { Container, Card, Form, Alert, Button } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 
 export default function Signin() {
@@ -31,7 +31,8 @@ export default function Signin() {
      
      {error && <Alert variant="danger" className="mb-4 text-center">{error}</Alert>}
 
-<Container className="my-3 d-flex justify-content-center">
+<Container className="my-3 d-flex flex-column align-items-center justify-content-center"
+style={{minHeight:"84vh"}}>
 
 <Card className="w-100" style={{maxWidth: "400px"}}>
     <Card.Body>
@@ -51,7 +52,7 @@ export default function Signin() {
 
 <br />
 
-<Link disabled={loading} className="btn btn-primary w-100" type="submit">Sign In</Link>
+<Button disabled={loading} className="w-100" type="submit">Sign In</Button>
 </Form>
 
 <div className="w.100 text-center mt-3">

@@ -1,6 +1,8 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
+import { Container, Button } from "react-bootstrap";
+
 export default function PasswordReset() {
     const [email, setEmail] = useState("");
     const [emailHasBeenSent, setEmailHasBeenSent] = useState(false);
@@ -20,6 +22,8 @@ export default function PasswordReset() {
 
 return(
     <>
+    <Container>
+
 <h2>Reset your password</h2>
 <form action="">
     {emailHasBeenSent && (<div>An email has been sent to you.</div>)}
@@ -35,13 +39,14 @@ return(
     placeholder="Input your email"
     onChange={onChangeHandler}
     />
-<button>
+<Button>
     Send me a reset link.
-</button>
+</Button>
 
 </form>
 
 <Link to="/signin">Back to sign in page</Link>
+    </Container>
 
     </>
 )

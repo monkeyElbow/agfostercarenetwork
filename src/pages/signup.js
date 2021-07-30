@@ -40,7 +40,8 @@ async function handleSubmit(e) {
 
     return(
         <>
-<Container className="my-3 d-flex justify-content-center">
+<Container className="my-3 d-flex flex-column align-items-center justify-content-center"
+style={{minHeight:"84vh"}}>
 
         <Card className="w-100" style={{maxWidth: "400px"}}>
             <Card.Body>
@@ -72,12 +73,12 @@ async function handleSubmit(e) {
     </Form.Group>
 
 <br />
-<Link disabled={loading} className="btn btn-primary w-100" type="submit">Sign Up</Link>
+<Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
 
 </Form>
 
 <br />
-<p>Already have an account?{" "}<Button variant="link" to="/signin" className="link">Sign in here</Button></p>
+<p>Already have an account?{" "}<Link to="/signin" className="link">Sign in here</Link></p>
 
 
             </Card.Body>

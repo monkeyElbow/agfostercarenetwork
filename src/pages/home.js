@@ -1,5 +1,5 @@
-import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Container, Row, Col, Button } from "react-bootstrap";
+// import { Link } from "react-router-dom";
 import NetworkLogo from "../graphics/NetworkLogo";
 import UsMap from "../components/UsMap";
 import NetworkLogoHorz from "../graphics/NetworkLogoHorz";
@@ -102,7 +102,8 @@ const home = () => {
 
 <div className="text-center mb-5">
 
-            <Link
+            <Button
+            variant="light"
             className="btn-lg btn-light w-50"
             href="/signup" 
             // style={{
@@ -115,7 +116,7 @@ const home = () => {
               <strong>
               Join Now
               </strong>
-              </Link>
+              </Button>
               </div>
 
           </Col>

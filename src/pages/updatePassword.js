@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
-import { Container, Card, Form, Alert } from "react-bootstrap";
+import { Container, Card, Form, Alert, Button } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 
 
@@ -76,7 +76,7 @@ function handleSubmit(e) {
     </Form.Group>
 
 <br />
-<Link disabled={loading} className="w-100 btn btn-primary" type="submit">Update</Link>
+<Button disabled={loading} className="w-100" type="submit">Update</Button>
 </Form>
 
             </Card.Body>

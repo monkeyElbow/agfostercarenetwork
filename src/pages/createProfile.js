@@ -1,7 +1,7 @@
 import { useState } from "react";
 // import { useHistory } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { Form, Row, Col } from "react-bootstrap";
+import { Form, Row, Col, Button } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
 import { db } from "../util/firebase";
 
@@ -262,13 +262,11 @@ export default function CreateProfile() {
 </Form.Group>
 
 
-
-
         <input type="hidden" id="uid" value={currentUser.uid}></input>
 
-        <Link className="mt-4 btn btn-primary" disabled={loading} type="submit">
+        <Button className="mt-4" disabled={loading} type="submit">
           Create Profile
-        </Link>
+        </Button>
       </Form>
 
       {/* <h1>All Profiles:</h1>
@@ -309,7 +307,10 @@ export default function CreateProfile() {
     */}
       
       {success && (
-        <div className="alert alert-success" style={{padding: "20px", marginTop: "25px"}}>Your profile has been updated!</div>
+        <div className="alert alert-success" style={{padding: "20px", marginTop: "25px"}}>Your profile has been updated!
+        <br />
+        Check out the <Link to="/network">Network page</Link>
+        </div>
       )} 
     </div>
   );

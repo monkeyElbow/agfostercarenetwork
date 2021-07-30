@@ -1,10 +1,30 @@
-import { Link } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import {Container} from "react-bootstrap"
 import { useAuth } from "../util/AuthContext"
+import { useState } from "react";
 
 
 export default function Footer() {
-  const { currentUser } = useAuth()
+
+  const [error, setError] = useState("")
+  const { currentUser, signout } = useAuth()
+  const history = useHistory()
+
+  async function handleLogout() {
+      setError("")
+  
+      try {
+        await signout()
+        history.push("/signin")
+      } catch {
+        setError("Failed to log out")
+      }
+    }
+
+
+
+
+  // const { currentUser } = useAuth()
 
     return (
         <>
@@ -15,15 +35,16 @@ export default function Footer() {
 
 {currentUser &&
 <Link to="/dashboard">
-  <small>
-
+ 
 {currentUser.email}
-  </small>
+
 </Link>
 }
-{/* {currentUser && 
-<Link to="/network">Network</Link>
-} */}
+{currentUser && 
+        <Link to="/" onClick={handleLogout}>
+        Sign Out
+    </Link>
+}
 
 {/* <Link to="/contact">Contact us</Link> */}
 

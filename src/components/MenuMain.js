@@ -2,26 +2,26 @@ import { Container, Alert } from "react-bootstrap";
 import { useState } from "react";
 import { useAuth } from "../util/AuthContext";
 
-import { Link, useHistory } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 
 export default function MenuMain() {
+  const { currentUser, signout } = useAuth()
     
 
     const [error, setError] = useState("")
-    const { currentUser, signout } = useAuth()
-    const history = useHistory()
+    // const history = useHistory()
 
-    async function handleLogout() {
-        setError("")
+    // async function handleLogout() {
+    //     setError("")
     
-        try {
-          await signout()
-          history.push("/signin")
-        } catch {
-          setError("Failed to log out")
-        }
-      }
+    //     try {
+    //       await signout()
+    //       history.push("/signin")
+    //     } catch {
+    //       setError("Failed to log out")
+    //     }
+    //   }
 
     return(  
         <>
@@ -58,11 +58,11 @@ Network
 }
 
 
-{currentUser && 
+{/* {currentUser && 
         <Link to="/" onClick={handleLogout}>
         Sign Out
     </Link>
-}
+} */}
 
 
         </Container>

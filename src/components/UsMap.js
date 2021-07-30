@@ -277,7 +277,7 @@ export default function UsMap() {
      
 
 
-     <Container className="p-3">
+     <Container className="col-lg-8 p-lg-5">
 
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 961.8 582.6" 
     height="100%"
