@@ -1,25 +1,25 @@
-import { Link, useHistory } from "react-router-dom"
+import { Link } from "react-router-dom"
 import {Container} from "react-bootstrap"
 import { useAuth } from "../util/AuthContext"
-import { useState } from "react";
+// import { useState } from "react";
 
 
 export default function Footer() {
+  const { currentUser } = useAuth()
 
-  const [error, setError] = useState("")
-  const { currentUser, signout } = useAuth()
-  const history = useHistory()
+  // const [error, setError] = useState("")
+  // const history = useHistory()
 
-  async function handleLogout() {
-      setError("")
+  // async function handleLogout() {
+  //     setError("")
   
-      try {
-        await signout()
-        history.push("/signin")
-      } catch {
-        setError("Failed to log out")
-      }
-    }
+  //     try {
+  //       await signout()
+  //       history.push("/signin")
+  //     } catch {
+  //       setError("Failed to log out")
+  //     }
+  //   }
 
 
 
@@ -28,6 +28,7 @@ export default function Footer() {
 
     return (
         <>
+        {/* {error && <Alert variant="warning">{error}</Alert>} */}
 <Container fluid className="p-2 text-white bg-dark menuFooter d-flex justify-content-evenly">
 
 
@@ -40,11 +41,11 @@ export default function Footer() {
 
 </Link>
 }
-{currentUser && 
+{/* {currentUser && 
         <Link to="/" onClick={handleLogout}>
         Sign Out
     </Link>
-}
+} */}
 
 {/* <Link to="/contact">Contact us</Link> */}
 
