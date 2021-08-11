@@ -8,6 +8,11 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
+// export function signInWithGoogle() {
+//     const provider = new auth.GoogleAuthProvider();
+//     return auth().signInWithPopup(provider);
+// }
+
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();
     const [ loading, setLoading ] = useState(true)
@@ -36,6 +41,8 @@ export function AuthProvider({ children }) {
         return currentUser.updatePassword(password)
     }
 
+
+
     useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
         setCurrentUser(user)
@@ -51,7 +58,7 @@ const value = {
     signout,
     resetPassword,
     updateEmail,
-    updatePassword
+    updatePassword,
 }
 
     return(

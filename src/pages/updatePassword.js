@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
 import { Container, Card, Form, Alert, Button } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
+// import { Link } from "react-router-dom";
 
 
 export default function UpdatePassword() {
@@ -46,6 +47,7 @@ function handleSubmit(e) {
       })
   }
 
+
     return(
         <>
         {error && <Alert variant="danger" className="mb-4 text-center">{error}</Alert>}
@@ -80,8 +82,11 @@ function handleSubmit(e) {
 </Form>
 
             </Card.Body>
-
         </Card>
+         
+            {/* <br />
+<p>Need to delete your account?{" "}<Link to="/delete-account" className="link">Click here</Link></p> */}
+
 
 
 </Container>

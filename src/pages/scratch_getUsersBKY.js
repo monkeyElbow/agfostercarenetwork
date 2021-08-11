@@ -1,5 +1,5 @@
 import { db } from "../util/firebase";
-import { Card, Container, Row, Col, Alert, Button, Accordion } from "react-bootstrap";
+import { Card, Container, Row, Col, Alert, Button, Accordion, Pageination } from "react-bootstrap";
 import { useState, useEffect } from "react";
 
 export default function GetAllUsers() {
@@ -16,7 +16,7 @@ export default function GetAllUsers() {
    try {
      return db
      .collection("Users")
-     .where("ag_affiliated", "==", "Yes")
+     .where("ag_affiliated", "==", "true")
      .orderBy("last_name")
      .get()
      .then((querySnapshot) => {
@@ -43,6 +43,30 @@ export default function GetAllUsers() {
 
 
 
+const [sortBy, setSortBy] = useState('name')
+
+// function sortByState() {
+//   if (profiles > 0) {
+
+//   }
+// setSortBy('state')
+// }
+
+
+useEffect(() => {
+try{
+  const newSort = [...profiles]
+// profiles.sort(function(a, b))
+
+//  please org by state and setting state
+
+// setData(newSort)
+} catch {
+  setError('nah')
+}
+},[])
+
+
 
   return (
     <>
@@ -53,6 +77,9 @@ export default function GetAllUsers() {
       <h3>AG Foster Care Network Members</h3>
 
 
+    {/* <Button variant="link" onClick={sortByState}>State</Button> */}
+      {/* <p>Sorted by: {sortBy} </p> */}
+
       {loading && <Alert variant="light">Loading...</Alert>}
       {error && <Alert variant="warning">{error}</Alert>}
 
@@ -61,7 +88,7 @@ export default function GetAllUsers() {
 <Row>
 
 {/* last name sorted list */}
-{profiles &&
+{sortBy === "name" &&
 (
   profiles
   // .filter()
@@ -110,7 +137,7 @@ export default function GetAllUsers() {
 )}
 
 {/* FOSTER PARENT */}
-{profile.fosterParent === "Yes" && (
+{profile.fosterParent === "true" && (
   <p>I am a Foster parent</p>
 )}
 
@@ -120,7 +147,7 @@ export default function GetAllUsers() {
 }
 
 {/* CREDENTIALED */}
-{profile.ag_credentialed === "Yes" && (
+{profile.ag_credentialed === "true" && (
   <p>AG Credentialed</p>
 )}
 

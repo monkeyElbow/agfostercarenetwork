@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../util/AuthContext";
+import USMapSmall from "../graphics/USMapSmall"
 // import GetAllUsers from "./GetAllUsers";
 
 export default function UsMap() {
@@ -14,256 +15,268 @@ export default function UsMap() {
   const [numKids, setNumKids] = useState('410308')
   const [pdfLink, setPdfLink] = useState('')
 
+function setUS() {
+  setSelectedState('United States')
+  setNumKids('410308')
+  setPdfLink('')
+}
+
+
   function setAL() {
     setSelectedState('Alabama')
     setNumKids('5682')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-AL.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/alabama-fact-sheet-2021.pdf')
   }
   function setAK() {
     setSelectedState('Alaska')
     setNumKids('2876')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-AK.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/alaska-fact-sheet-2021.pdf')
   }
   function setAZ() {
     setSelectedState('Arizona')
     setNumKids('13329')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-AK.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/arizona-fact-sheet-2021.pdf')
   }
   function setAR() {
     setSelectedState('Arkansas')
     setNumKids('4123')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-AR.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/arkansas-fact-sheet-2021.pdf')
   }
   function setCA() {
     setSelectedState('California')
     setNumKids('47360')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-CA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/california-fact-sheet-2021.pdf')
   }
   function setCO() {
     setSelectedState('Colorado')
     setNumKids('4824')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-CO.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/colorado-fact-sheet-2021.pdf')
   }
   function setCT() {
     setSelectedState('Connecticut')
     setNumKids('3882')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-CT.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/connecticut-fact-sheet-2021.pdf')
   }
 
   function setDE() {
     setSelectedState('Delaware')
     setNumKids('557')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-DE.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/delaware-fact-sheet-2021.pdf')
   }
+  // function setDC() {
+  //   setSelectedState('Delaware')
+  //   setNumKids('357')
+  //   setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/district-of-columbia-fact-sheet-2021.pdf')
+  // }
   function setFL() {
     setSelectedState('Florida')
     setNumKids('23667')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-FL.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/florida-fact-sheet-2021.pdf')
   }
   function setGA() {
     setSelectedState('Georgia')
     setNumKids('12888')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-GA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/georgia-fact-sheet-2021.pdf')
   }
   function setHI() {
     setSelectedState('Hawaii')
     setNumKids('1604')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-HI.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/hawaii-fact-sheet-2021.pdf')
   }
   function setID() {
     setSelectedState('Idaho')
     setNumKids('1740')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-ID.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/idaho-fact-sheet-2021.pdf')
   }
   function setIL() {
     setSelectedState('Illinois')
     setNumKids('16565')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-IL.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/illinois-fact-sheet-2021.pdf')
   }
   function setIN() {
     setSelectedState('Indiana')
     setNumKids('16023')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-IN.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/indiana-fact-sheet-2021.pdf')
   }
   function setIA() {
     setSelectedState('Iowa')
     setNumKids('5943')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-IA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/iowa-fact-sheet-2021.pdf')
   }
   function setKS() {
     setSelectedState('Kansas')
     setNumKids('8001')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-KS.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/kansas-fact-sheet-2021.pdf')
   }
   function setKY() {
     setSelectedState('Kentucky')
     setNumKids('9113')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-KY.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/kentucky-fact-sheet-2021.pdf')
   }
   function setLA() {
     setSelectedState('Louisiana')
     setNumKids('3929')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-LA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/louisiana-fact-sheet-2021.pdf')
   }
   function setME() {
     setSelectedState('Maine')
     setNumKids('2083')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-ME.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/maine-fact-sheet-2021.pdf')
   }
   function setMD() {
     setSelectedState('Maryland')
     setNumKids('3689')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MD.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/maryland-fact-sheet-2021.pdf')
   }
   function setMA() {
     setSelectedState('Massachusetts')
     setNumKids('9831')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/massachusettsfact-sheet-2021.pdf')
   }
   function setMI() {
     setSelectedState('Michigan')
     setNumKids('11438')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MI.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/michigan-fact-sheet-2021.pdf')
   }
   function setMN() {
     setSelectedState('Minnesota')
     setNumKids('8261')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MN.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/minnesota-fact-sheet-2021.pdf')
   }
   function setMS() {
     setSelectedState('Mississippi')
     setNumKids('4011')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MS.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/mississippi-fact-sheet-2021.pdf')
   }
   function setMO() {
     setSelectedState('Missouri')
     setNumKids('12654')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MO.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/missouri-fact-sheet-2021.pdf')
   }
   function setMT() {
     setSelectedState('Montana')
     setNumKids('3700')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-MT.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/montana-fact-sheet-2021.pdf')
   }
   function setNE() {
     setSelectedState('Nebraska')
     setNumKids('3238')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NE.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/nebraska-fact-sheet-2021.pdf')
   }
   function setNV() {
     setSelectedState('Nevada')
     setNumKids('4515')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NV.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/nevada-fact-sheet-2021.pdf')
   }
   function setNH() {
     setSelectedState('New Hampshire')
     setNumKids('1211')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NH.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/new-hampshire-fact-sheet-2021.pdf')
   }
   function setNJ() {
     setSelectedState('New Jersey')
     setNumKids('4431')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NJ.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/new-jersey-fact-sheet-2021.pdf')
   }
   function setNM() {
     setSelectedState('New Mexico')
     setNumKids('2324')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NM.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/new-mexico-fact-sheet-2021.pdf')
   }
   function setNY() {
     setSelectedState('New York')
     setNumKids('15606')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NY.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/new-york-fact-sheet-2021.pdf')
   }
   function setNC() {
     setSelectedState('North Carolina')
     setNumKids('11025')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-NC.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/north-carolina-sheet-2021.pdf')
   }
   function setND() {
     setSelectedState('North Dakota')
     setNumKids('1468')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-ND.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/north-dakota-fact-sheet-2021.pdf')
   }
   function setOH() {
     setSelectedState('Ohio')
     setNumKids('15710')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-OH.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/ohio-fact-sheet-2021.pdf')
   }
   function setOK() {
     setSelectedState('Oklahoma')
     setNumKids('8301')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-OK.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/oklahoma-fact-sheet-2021.pdf')
   }
   function setOR() {
     setSelectedState('Oregon')
     setNumKids('6922')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-OR.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/oregon-fact-sheet-2021.pdf')
   }
   function setPA() {
     setSelectedState('Pennsylvania')
     setNumKids('14912')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-PA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/pennsylvania-fact-sheet-2021.pdf')
   }
   function setRI() {
     setSelectedState('Rhode Island')
     setNumKids('2196')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-RI.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/rhode-island-fact-sheet-2021-1.pdf')
   }
   function setSC() {
     setSelectedState('South Carolina')
     setNumKids('4497')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-SC.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/south-carolina-fact-sheet-2021-1.pdf')
   }
   function setSD() {
     setSelectedState('South Dakota')
     setNumKids('1703')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-SD.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/south-dakota-fact-sheet-2021.pdf')
   }
   function setTN() {
     setSelectedState('Tennessee')
     setNumKids('8893')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-TN.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/tennessee-fact-sheet-2021.pdf')
   }
   function setTX() {
     setSelectedState('Texas')
     setNumKids('31283')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-TX.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/texas-fact-sheet-2021.pdf')
   }
   function setUT() {
     setSelectedState('Utah')
     setNumKids('2335')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-UT.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/utah-fact-sheet-2021.pdf')
   }
   function setVT() {
     setSelectedState('Vermont')
     setNumKids('1226')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-VT.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/vermont-fact-sheet-2021.pdf')
   }
   function setVA() {
     setSelectedState('Virginia')
     setNumKids('4747')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-VA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/virginia-fact-sheet-2021.pdf')
   }
   function setWA() {
     setSelectedState('Washington')
     setNumKids('10151')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-WA.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/washington-fact-sheet-2021.pdf')
   }
   function setWV() {
     setSelectedState('West Virginia')
     setNumKids('7211')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-WV.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/west-virginia-fact-sheet-2021.pdf')
   }
   function setWI() {
     setSelectedState('Wisconsin')
     setNumKids('7626')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-WI.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/wisconsin-fact-sheet-2021.pdf')
   }
   function setWY() {
     setSelectedState('Wyoming')
     setNumKids('984')
-    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/state-data-sheet-WY.pdf')
+    setPdfLink('https://caseyfamilypro-wpengine.netdna-ssl.com/media/wyoming-fact-sheet-2021.pdf')
   }
 
 
@@ -908,6 +921,20 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
 
 
 
+
+{/* US MAP BUTTON */}
+{selectedState !== "United States" &&
+<div style={{position:"relative"}}>
+
+<div onClick={setUS} className="rounded p-1" style={{width:"60px", position:"absolute", right:-11, bottom:"5px", backgroundColor:"var(--color1)", cursor:"pointer" }}>
+  {/* <small>
+  Click for US stats
+</small> */}
+<USMapSmall color="#fff" />
+</div>
+</div>
+}
+
 </Container>
 
 
@@ -925,7 +952,7 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
           color:"var(--color4)",
           fontSize:"2.5rem",
           textAlign:"center",
-          // paddingLeft:"2rem",
+          paddingTop:"1rem",
           textTransform:"uppercase",
           }}>
           <strong>
@@ -933,17 +960,16 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
           </strong>
         </h1>
 
-      <Container fluid className="p-4 text-white text-center" style={{backgroundColor:"var(--color4"}}>
+      <Container fluid className="p-4 text-white text-center d-flex flex-column justify-content-center" style={{backgroundColor:"var(--color4"}}>
 
-        <h5 style={{lineHeight:".1rem"}}>
-          {selectedState} Kids in Foster Care:{" "}
+        <h5>
+          Children and Youth in Foster Care:{" "}
           <NumberFormat 
   value={numKids}
   displayType="text"
   thousandSeparator={true}
 />
 </h5>
-
 
         <h1>Network 5% Target:{" "}
           <strong>
@@ -961,9 +987,11 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
   </p>}
 
 
+
 {pdfLink && <div>
  <small>
   <a 
+  className="btn btn-light"
   role="button"
   target="_blank" 
   rel="noopener noreferrer"
@@ -978,11 +1006,9 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
 
     </Container>
 
-{currentUser && <Container className="mt-5">
-
-{/* <GetAllUsers /> */}
-
-  </Container>}
+{/* {currentUser && <Container className="mt-5">
+<GetAllUsers />
+  </Container>} */}
 
 
 
@@ -1005,3 +1031,6 @@ d="M139 375.3l3.9-.5 1.5-2 .5-3-3.5-.5-.5-.7.4-2-.1-.6 1.9-.6 3-2.8.6-5 1.4-3.4 
     </>
   );
 }
+
+
+// https://www.casey.org/state-data/

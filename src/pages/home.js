@@ -7,8 +7,12 @@ import USMapSmall from "../graphics/USMapSmall";
 import ChildIcons from "../graphics/ChildIcons";
 import FamilyIcon from "../graphics/FamilyIcon";
 import KidsIconsRow from "../graphics/KidsIconsRow";
+import { useAuth } from "../util/AuthContext";
 
-const home = () => {
+
+const Home = () => {
+  const { currentUser } = useAuth();
+
   return (
     <>
  
@@ -102,21 +106,22 @@ const home = () => {
 
 <div className="text-center mb-5">
 
+{!currentUser &&
             <Button
             variant="light"
-            className="btn-lg btn-light w-50"
+            className=" w-50"
             href="/signup" 
-            // style={{
-              // backgroundColor:"var(--color4)",
+            style={{
               // backgroundColor:"#fff",
-              // color:"var(--color1)",
-              // border:0
-            // }}
+              color:"var(--color1)",
+              border:0
+            }}
             >
               <strong>
               Join Now
               </strong>
               </Button>
+            }
               </div>
 
           </Col>
@@ -124,24 +129,6 @@ const home = () => {
       </Container>
 
   
-
-      {/* <Container>
-    <Row>
-        <Col md={4} className="d-flex justify-content-center" style={{color:"var(--color1"}}>
-            <h1 className="display-1">
-            <strong>43%</strong>
-            </h1>
-            </Col>
-        <Col className="d-flex justify-content-center align-items-center felx-row">
-        <h5>of pastors say they would start an orphan care 
-ministry at their church 
-<strong>
- {" "}if they had the right strategy.
-</strong>
-</h5>
-        </Col>
-    </Row>
-</Container> */}
 
       <Container
         fluid
@@ -165,7 +152,7 @@ ministry at their church
           </strong>
         </p>
 
-        <Container className="w-25">
+        <Container className="col-sm-4">
           <FamilyIcon color="#fff" />
         </Container>
       </Container>
@@ -180,7 +167,7 @@ ministry at their church
 
 
 <Container className="my-5">
-      <Container className="w-25">
+      <Container className="col-6">
         <NetworkLogoHorz fill="#000" secondary="var(--color1)" />
       </Container>
 </Container>
@@ -188,4 +175,4 @@ ministry at their church
   );
 };
 
-export default home;
+export default Home;

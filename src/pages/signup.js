@@ -14,8 +14,23 @@ const passwordConfirmRef = useRef()
 const { signup } = useAuth()
 const [error, setError] = useState('')
 const [loading, setLoading] = useState(false)
+const [human, setHuman] = useState(false)
 const history = useHistory()
 
+// async function googleSignIn(e) {
+//     try {
+//         setError('')
+//         await signInWithGoogle();
+//     } catch (error){
+//         setError("doh!")
+//     }
+// }
+
+async function humanCheck(e) {
+    e.preventDefault()
+
+    setHuman(true)
+}
 
 async function handleSubmit(e) {
     e.preventDefault()
@@ -57,25 +72,32 @@ style={{minHeight:"84vh"}}>
 
 <Form onSubmit={handleSubmit}>
 
-    <Form.Group id="email">
+    <Form.Group className="mt-3" id="email">
         <Form.Label>Email</Form.Label>
         <Form.Control type="email" ref={emailRef}></Form.Control>
     </Form.Group>
 
-    <Form.Group id="password">
+    <Form.Group className="mt-3" id="password">
         <Form.Label>Password</Form.Label>
         <Form.Control type="password" ref={passwordRef}></Form.Control>
     </Form.Group>
 
-    <Form.Group id="Password-confirm">
+    <Form.Group className="mt-3" id="Password-confirm">
         <Form.Label>password confirmation</Form.Label>
         <Form.Control type="password" ref={passwordConfirmRef}></Form.Control>
     </Form.Group>
-
 <br />
+{!human &&
+<Button className="w-100 btn-secondary" onClick={humanCheck}>I am indeed a person</Button>
+}
+
+{human &&
 <Button disabled={loading} className="w-100" type="submit">Sign Up</Button>
+}
 
 </Form>
+
+{/* <Button onClick={googleSignIn}>SignUp with google</Button> */}
 
 <br />
 <p>Already have an account?{" "}<Link to="/signin" className="link">Sign in here</Link></p>

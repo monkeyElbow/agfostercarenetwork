@@ -3,7 +3,7 @@
     /* position: absolute; */
     /* top: 0; */
     /* left: 0; */
-    background-color: black;
+    background-color: var(--color1);
     color: #fff;
 }
 
@@ -21,4 +21,9 @@
 }
 .menuMain a:active {
     color:var(--color2)
+}
+
+.nav-link
+ {
+    color: aqua;
 }

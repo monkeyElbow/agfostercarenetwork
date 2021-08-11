@@ -8,25 +8,7 @@ import { db } from "../util/firebase";
 export default function CreateProfile() {
   const { currentUser } = useAuth();
 
-  // toggle for affiliated checkbox
-  const [affiliated, setAffiliated] = useState(false);
-  const toggleAffiliated = () => setAffiliated((value) => !value);
-
-  // toggle for credentialed checkbox
-  const [credentialed, setCredentialed] = useState(false);
-  const toggleCredentialed = () => setCredentialed((value) => !value);
-
-  // toggle for fosterParent checkbox
-  const [fosterParent, setFosterParent] = useState(false);
-  const togglefosterParent = () => setFosterParent((value) => !value);
-
-  // toggle for fosterParent checkbox
-  const [agChurch, setAgChurch] = useState(false);
-  const toggleAgChurch = () => setAgChurch((value) => !value);
-
   const [loading, setLoading] = useState(false);
-  // const [profiles, setProfiles] = useState([]);
-  // const [currentProfile, setCurrentProfile] = useState([]);
   const [success, setSuccess] = useState(false);
 
 
@@ -57,9 +39,9 @@ export default function CreateProfile() {
       <br />
       <Form onSubmit={saveAnswer}>
        
+        <Form.Group className="mt-3 bg-light p-3 border">
       <Row>
            <Col>
-        <Form.Group>
           <Form.Label>First Name</Form.Label>
           <Form.Control
             required
@@ -67,11 +49,9 @@ export default function CreateProfile() {
             type="text"
             placeholder="First Name"
             ></Form.Control>
-        </Form.Group>
             </Col>
   
           <Col>
-        <Form.Group>
           <Form.Label>Last Name</Form.Label>
           <Form.Control
             required
@@ -79,66 +59,136 @@ export default function CreateProfile() {
             type="text"
             placeholder="Last Name"
             ></Form.Control>
-        </Form.Group>
             </Col>
           </Row>
-
-        <Form.Group className="mt-3 bg-light p-3 border">
-          <Form.Check
-            id="ag_affiliated"
-            label="I attend or am part of an Assemblies of God ministry or organization."
-            value={affiliated}
-            type="checkbox"
-            onChange={toggleAffiliated}
-          />
         </Form.Group>
 
-        <Form.Group className="mt-3 bg-light p-3 border">
-          <Form.Check
-            id="ag_credentialed"
-            label="I am an Assemblies of God credentialed minister."
-            value={credentialed}
-            type="checkbox"
-            onChange={toggleCredentialed}
-          />
-        </Form.Group>
 
         <Form.Group className="mt-3 bg-light p-3 border">
-          <Form.Check
-          inline
-            id="fosterParent"
-            label="I am a foster parent."
-            value={fosterParent}
-            type="checkbox"
-            onChange={togglefosterParent}
-          />
-          
-          <Row className="mt-3">
-<Col md={10}>
-          <Form.Label>Number of foster children in my home this year.<small> (Kindship and non-kinship)</small></Form.Label>
-          </Col>
-          <Col>
-          <Form.Control
-          inline
-          id="numberOfFosterKids"
-          type="number"
-          ></Form.Control>
+              <Row>
+                <Col sm={6}>
+                  <p>
+                    I attend or am part of an Assemblies of God ministry or
+                    organization.
+                  </p>
+                </Col>
+                <Col sm={3}>
+                  <Form.Control
+                    as="select"
+                    id="ag_affiliated"
+                  >
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </Form.Control>
+                </Col>
+              </Row>
+            </Form.Group>
 
-          </Col>
-          </Row>
-        </Form.Group>
 
-        <Form.Group className="mt-3">
-          <Form.Label>Street Address</Form.Label>
+            <Form.Group className="mt-3 bg-light p-3 border">
+              <Row>
+                <Col sm={6} className="d-flex align-items-center">
+                  <p>I am an Assemblies of God credentialed minister.</p>
+                </Col>
+                <Col sm={3}>
+                  <Form.Control
+                    id="ag_credentialed"
+                    as="select"
+                  >
+                    <option value="yes">Yes</option>
+                    <option value="No">No</option>
+                  </Form.Control>
+                </Col>
+              </Row>
+            </Form.Group>
+
+
+        <Form.Group className="mt-3 bg-light p-3 border">
+    <Form.Label>My Assemblies of God employer <small>(if applicable)</small></Form.Label>
+    <br /><small>ex. General Council of the Assemblies of God, District Council of the AG, Local AG Church, AG Family Servers Dba COMPACT, AG US Missions, AG University etc </small>
+    <Form.Control id="org_ag" type="text"
+    placeholder="General Council of the AG, District Council of the AG, Local AG Church ..."
+    ></Form.Control>
+   
+    <Form.Label className="mt-3">My Title/Role</Form.Label>
+    <Form.Control id="org_ag_title" type="text"></Form.Control>
+
+    <Form.Label className="mt-3">My AG employer website URL</Form.Label>
+    <Row>
+        <Col md={1} className="d-flex align-items-center">
+        <small>https://</small>
+        </Col>
+        <Col>
+    <Form.Control id="org_ag_url" type="text" placeholder="URL"></Form.Control>
+        </Col>
+    </Row>
+</Form.Group>
+
+        <Form.Group className="mt-3 bg-light p-3 border">
+    <Form.Label>Name of my organization or corporation <small>(if applicable)</small></Form.Label>
+    <Form.Control id="org_other" type="text"
+    placeholder="ex. 501c3, for profit corporation etc"
+    ></Form.Control>
+   
+    <Form.Label className="mt-3">My Title/Role</Form.Label>
+    <Form.Control id="org_other_title" type="text"></Form.Control>
+
+    <Form.Label className="mt-3">My organization or corporation website URL</Form.Label>
+    <Row>
+        <Col md={1} className="d-flex align-items-center">
+        <small>https://</small>
+        </Col>
+        <Col>
+    <Form.Control id="org_other_url" type="text" placeholder="URL"></Form.Control>
+        </Col>
+    </Row>
+</Form.Group>
+
+      
+<Form.Group className="mt-3 bg-light p-3 border">
+              <Row>
+                <Col sm={3} className="d-flex align-items-center">
+                  <p>I am a foster parent.</p>
+                </Col>
+                <Col sm={3}>
+                  <Form.Control
+                    as="select"
+                    id="fosterParent"
+                    // Value="No"
+                  >
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </Form.Control>
+                </Col>
+              </Row>
+
+              <Row className="mt-3">
+                <Col>
+                  <Form.Label>
+                    Number of foster children in my home this year.
+                    <small> (Kindship and non-kinship)</small>
+                  </Form.Label>
+                </Col>
+                <Col md={2}>
+                  <Form.Control
+                    inline
+                    id="numberOfFosterKids"
+                    type="number"
+                    Value=""
+                  ></Form.Control>
+                </Col>
+              </Row>
+            </Form.Group>
+
+        <Form.Group className="mt-3 bg-light p-3 border">
+          <Form.Label>Street Address <small>(Your street address will not be made public.)</small></Form.Label>
           <Form.Control
             id="street_address"
             type="text"
             placeholder="Street Address"
           ></Form.Control>
-        </Form.Group>
 
-        <Form.Group className="mt-3">
-            <Row>
+            <Row className="mt-3">
                 <Col>
           <Form.Label>City</Form.Label>
           <Form.Control id="city" type="text" placeholder="City"></Form.Control>
@@ -147,6 +197,7 @@ export default function CreateProfile() {
                 <Col>
           <Form.Label>State</Form.Label>
           <Form.Control required id="state" as="select">
+            <option value="NONE">None Selected</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -212,7 +263,7 @@ export default function CreateProfile() {
         </Row>
         </Form.Group>
 
-<Form.Group className="mt-3">
+<Form.Group className="mt-3 bg-light p-3 border">
     <Form.Label>Social Media</Form.Label>
     <Row>
         <Col md={1} className="d-flex align-items-center">
@@ -226,33 +277,33 @@ export default function CreateProfile() {
 
 
 <Form.Group className="mt-3 bg-light p-3 border">
-    <Form.Label>The Name of My church</Form.Label>
-    <Form.Control id="church" type="text"></Form.Control>
+              <Form.Label>The Name of my Church</Form.Label>
+              <Form.Control
+                id="church"
+                type="text"
+                Value=""
+              ></Form.Control>
 
-          <Form.Check className="mt-2"
-            id="ag_church"
-            label="My church is an Assemblies of God church"
-            value={agChurch}
-            type="checkbox"
-            onChange={toggleAgChurch}
-          />
-        </Form.Group>
+              <br />
+
+              <Row>
+                <Col sm={6}>
+                  <p>My church is an Assemblies of God church.</p>
+                </Col>
+                <Col sm={3}>
+                  <Form.Control
+                    as="select"
+                    id="ag_church"
+                    // Value="No"
+                  >
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </Form.Control>
+                </Col>
+              </Row>
+            </Form.Group>
 
 
-<Form.Group className="mt-3 bg-light p-3 border">
-    <Form.Label>My Assemblies of God organization and employer</Form.Label>
-    <Form.Control id="org" type="text"></Form.Control>
-
-    <Form.Label className="mt-3">Organization website URL</Form.Label>
-    <Row>
-        <Col md={1} className="d-flex align-items-center">
-        <small>https://</small>
-        </Col>
-        <Col>
-    <Form.Control id="org_url" type="text" placeholder="URL"></Form.Control>
-        </Col>
-    </Row>
-</Form.Group>
 
 
 

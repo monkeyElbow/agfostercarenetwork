@@ -45,7 +45,7 @@ style={{minHeight:"84vh"}}>
 <Form.Control type="email" ref={emailRef}></Form.Control>
 </Form.Group>
 
-<Form.Group id="password">
+<Form.Group id="password" className="mt-3">
 <Form.Label>password</Form.Label>
 <Form.Control type="password" ref={passwordRef}></Form.Control>
 </Form.Group>

@@ -4,7 +4,7 @@ import { AuthProvider } from './util/AuthContext';
 
 import PrivateRoute from './components/PrivateRoute';
 
-import home from './pages/home.js';
+import Home from './pages/home.js';
 import about from './pages/about.js';
 import signin from './pages/signin';
 import profile from './pages/profile'
@@ -19,7 +19,7 @@ import mapPage from './pages/mapPage';
 import Footer from './components/Footer';
 import updatePassword from './pages/updatePassword';
 import networkPage from './pages/networkPage';
-
+import DeleteAccount from './pages/DeleteAccount';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
 
 <Switch>
 
-    <Route exact path="/" component={home} />
+    <Route exact path="/" component={Home} />
 
 
     <Route path="/about" component={about} />
@@ -46,6 +46,7 @@ function App() {
     <PrivateRoute path="/dashboard" component={dashboard} />
     <PrivateRoute path="/create-profile" component={CreateProfile} />
     <PrivateRoute path="/update-profile" component={UpdateProfile} />
+    <PrivateRoute path="/delete-account" component={DeleteAccount} />
     <Route path="/signup" component={signup} />
     <Route path="/forgot-password" component={forgotPassword} />
     <Route component={pagenotfound} />

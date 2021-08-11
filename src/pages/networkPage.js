@@ -4,7 +4,8 @@ import { Container } from "react-bootstrap";
 // import { useAuth } from "../util/AuthContext";
 // import { db } from "../util/firebase";
 
-import GetAllUsers from "../components/GetAllUsers";
+// import GetAllUsers from "../components/GetAllUsers";
+import NetworkTable from "../components/NetworkTable";
 
 export default function NetworkPage() {
 //   const { currentUser } = useAuth();
@@ -26,7 +27,6 @@ export default function NetworkPage() {
 //           allNames.push(data.name);
 //         });
 //         setNames(allNames);
-//         // console.log(names)
 //       } catch (err) {
 //         setError(err);
 //       }
@@ -40,7 +40,10 @@ export default function NetworkPage() {
       <Container className="py-5"
     style={{minHeight:"86vh"}}
             >
-        <GetAllUsers />
+
+
+              <NetworkTable />
+        {/* <GetAllUsers /> */}
       </Container>
     </>
   );
