@@ -3,7 +3,7 @@ import { useState } from "react";
 // import { useHistory } from "react-router-dom";
 import { Container, Card, Alert, Button } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
-import { auth, db } from "../util/firebase";
+import { db } from "../util/firebase";
 
 
 export default function DeleteAccount() {
@@ -11,7 +11,7 @@ export default function DeleteAccount() {
 
 const [error, setError] = useState('')
 const [loading, setLoading] = useState(false)
-const [success, setSuccess] = useState(false)
+const [success ] = useState(false)
     
     
 // const history = useHistory()

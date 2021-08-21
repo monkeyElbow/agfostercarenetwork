@@ -94,11 +94,11 @@ export default function UpdateProfile() {
   function deleteProfile(e) {
     e.preventDefault();
     setLoading(true);
-    console.log("start delete!");
+    // console.log("start delete!");
 
     db.collection("Users").doc(currentUser.uid).delete();
 
-    console.log("end delete!");
+    // console.log("end delete!");
     setLoading(false);
   }
   // end delete user profile

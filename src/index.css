@@ -48,7 +48,7 @@
 
 .alert-primary{
 color:var(--color1);
-background-color:rgb(231, 231, 231);
+background-color:rgb(241, 241, 241);
 border-color:var(--color1);
 }
 
@@ -98,7 +98,7 @@ border-color:var(--color1);
 }
 
 .row-expansion-style {
-  background-color: var(--color5);
+  background-color: rgb(235, 235, 235);
 }
 .row-expansion-style a {
   color: var(--color1);

@@ -2,6 +2,10 @@ import { useState, useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Container, Card, Button, Form, Alert } from "react-bootstrap";
 import { useAuth } from "../util/AuthContext";
+// import { auth } from "../util/firebase";
+// import { auth } from "../util/firebase";
+// import firebase from "firebase/app";
+// import { signInWithGoogle } from "../util/AuthContext";
 
 
 export default function Signup() {
@@ -26,9 +30,8 @@ const history = useHistory()
 //     }
 // }
 
-async function humanCheck(e) {
+function humanCheck(e) {
     e.preventDefault()
-
     setHuman(true)
 }
 
@@ -52,6 +55,7 @@ async function handleSubmit(e) {
     }
     setLoading(false)
 }
+
 
     return(
         <>
@@ -99,9 +103,16 @@ style={{minHeight:"84vh"}}>
 
 {/* <Button onClick={googleSignIn}>SignUp with google</Button> */}
 
+
+
 <br />
 <p>Already have an account?{" "}<Link to="/signin" className="link">Sign in here</Link></p>
 
+{/* <br />
+<p className="text-center">or</p>
+<br />
+
+<Button className="w-100" onClick={signInWithGoogle}>Sign in with Google</Button> */}
 
             </Card.Body>
         
@@ -114,3 +125,5 @@ style={{minHeight:"84vh"}}>
         </>
     )
 }
+
+

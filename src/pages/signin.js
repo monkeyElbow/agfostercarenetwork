@@ -38,6 +38,13 @@ style={{minHeight:"84vh"}}>
     <Card.Body>
 <h2>Sign In</h2>
 
+{/* <br />
+<Button className="w-100" onClick={signInWithGoogle}>Sign in with Google</Button>
+
+<br />
+<br />
+<p>or sign in with email</p> */}
+
 <Form onSubmit={handleSubmit}>
 
 <Form.Group id="email">
@@ -60,6 +67,8 @@ style={{minHeight:"84vh"}}>
 <br />
 <Link to="/signup">Need an account?</Link>
 </div>
+
+
 
     </Card.Body>
 </Card>

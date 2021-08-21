@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { auth } from "./firebase";
-// import firestore from "./firestore"
+import firebase from "firebase/app";
 
 const AuthContext = React.createContext();
 
@@ -8,10 +8,18 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
-// export function signInWithGoogle() {
-//     const provider = new auth.GoogleAuthProvider();
-//     return auth().signInWithPopup(provider);
-// }
+
+export function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope('profile');
+    provider.addScope('email');
+    auth.signInWithPopup(provider)
+    // .then(function(result) {
+    //     var token = result.credential.accessToken;
+    //     var currentUser = result.user
+    // })
+
+}
 
 export function AuthProvider({ children }) {
     const [currentUser, setCurrentUser] = useState();

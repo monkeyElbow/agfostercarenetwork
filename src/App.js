@@ -1,4 +1,8 @@
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import ReactGA from 'react-ga'
+import {createBrowserHistory} from 'history'
+import { useEffect } from "react";
+
 import MenuMain from './components/MenuMain'
 import { AuthProvider } from './util/AuthContext';
 
@@ -21,7 +25,25 @@ import updatePassword from './pages/updatePassword';
 import networkPage from './pages/networkPage';
 import DeleteAccount from './pages/DeleteAccount';
 
+import Messages from './pages/Messages'
+
 function App() {
+
+  ReactGA.initialize('UA-145080690-1')
+
+  const history = createBrowserHistory()
+  history.listen(location => {
+    ReactGA.set({page: location.pathname});
+    ReactGA.pageview(location.pathname);
+  });
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search)
+   
+  }, [history])
+
+
+
   return (
     <>
     <Router>
@@ -44,6 +66,7 @@ function App() {
     <PrivateRoute path="/update-password" component={updatePassword} />
     <PrivateRoute path="/map" component={mapPage} />
     <PrivateRoute path="/dashboard" component={dashboard} />
+    <PrivateRoute path="/messages" component={Messages} />
     <PrivateRoute path="/create-profile" component={CreateProfile} />
     <PrivateRoute path="/update-profile" component={UpdateProfile} />
     <PrivateRoute path="/delete-account" component={DeleteAccount} />

@@ -1,11 +1,11 @@
 import BootstrapTable from "react-bootstrap-table-next";
 import { db } from "../util/firebase";
-import {  Alert, Container, Row, Col, Badge } from "react-bootstrap";
+import {  Alert, Container, Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, { Search, ColumnToggle } from 'react-bootstrap-table2-toolkit';
+import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
 
 
 
@@ -131,32 +131,13 @@ const CustomToggleList = ({
 
 <Row>
   <Col md="auto">
-<h4 className="text-capitalize mb-2">
+<h3 className="text-capitalize mb-2" style={{color:"var(--color1)"}}>
                       <strong>
                         {row.first_name} {row.last_name}
                       </strong>
+                      </h3>
 
-                      {/* CITY/STATE */}
-{row.city.length > 1 &&
-<p> {row.city}, {row.state !== "NONE" &&
-<span> {row.state}</span>
-}</p>
-}
-                    </h4>
-
-                    {/* SOCIAL MEDIA URL */}
-{row.social_media.length > 1 && (
-  <p>
-    {/* Social Media:{" "} */}
-    <a
-      rel="noopener noreferrer"
-      target="_blank"
-      href={`https://${row.social_media}`}
-    >
-      <strong>{row.social_media}</strong>
-    </a>
-  </p>
-)}
+                     
 
   </Col>
 
@@ -176,9 +157,36 @@ const CustomToggleList = ({
 </Row>
 
 
-<Row>
-  <Col lg={6} md={12} className="mt-1">
+
+
+ {/* CITY/STATE */}
+ {row.city.length > 1 &&
+<h5> {row.city}, {row.state !== "NONE" &&
+<span> {row.state}</span>
+}</h5>
+}
+
+                    {/* SOCIAL MEDIA URL */}
+{row.social_media.length > 1 && (
+  <p>
+    {/* Social Media:{" "} */}
+    <a
+      rel="noopener noreferrer"
+      target="_blank"
+      href={`//${row.social_media.replace(/^\/\/|^.*?:(\/\/)?/, '')}`}
+    >
+      <strong>{row.social_media.replace(/^\/\/|^.*?:(\/\/)?/, '')}</strong>
+    </a>
+  </p>
+)}
+
+
+
+<Row className="d-flex justify-content-around">
+  {row.org_ag &&
+  <Col lg="auto">
     
+<Container className="my-2 rounded p-4 border border-1 border-dark bg-white">
 
 {/* ORG AG */}
 {row.org_ag && <h5>{row.org_ag}</h5>}
@@ -197,24 +205,28 @@ const CustomToggleList = ({
     <a
       rel="noopener noreferrer"
       target="_blank"
-      href={`https://${row.org_ag_url}`}
+      href={`//${row.org_ag_url.replace(/^\/\/|^.*?:(\/\/)?/, '')}`}
       >
-      <strong>{row.org_ag_url}</strong>
+      <strong>{row.org_ag_url.replace(/^\/\/|^.*?:(\/\/)?/, '')}</strong>
     </a>
   </p>
 )}
-
-
+</Container>
 
   </Col>
-  <Col className="mt-1">
-  
+}
+
+
+{row.org_other &&
+  <Col lg="auto">
+  <Container className="my-2 rounded p-4 border border-1 border-dark bg-white">
+
   
 {/* ORG OTHER */}
 {row.org_other && <h5>{row.org_other}</h5>}
 
 {/* TITLE OTHER ORG */}
-{row.org_ag_title && (
+{row.org_other_title && (
   <p className="text-capitalize my-1" style={{lineHeight:"1.1rem"}}>
     <strong>{row.org_other_title}</strong>
   </p>
@@ -227,13 +239,15 @@ const CustomToggleList = ({
     <a
       rel="noopener noreferrer"
       target="_blank"
-      href={`https://${row.org_other_url}`}
+      href={`//${row.org_other_url.replace(/^\/\/|^.*?:(\/\/)?/, '')}`}
       >
-      <strong>{row.org_other_url}</strong>
+      <strong>{row.org_other_url.replace(/^\/\/|^.*?:(\/\/)?/, '')}</strong>
     </a>
   </p>
 )}
+</Container>
 </Col>
+}
 </Row>
 
 
