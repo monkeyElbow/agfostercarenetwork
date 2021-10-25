@@ -26,4 +26,7 @@ yarn-error.log*
 
 notes.txt
 
-/.vscode
+.env
+.gitignore
+.firebasesrc
+firebase.json
