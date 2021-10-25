@@ -1,136 +1,154 @@
 import { db } from "../util/firebase";
 import { useAuth } from "../util/AuthContext";
 import { Container, Form, Button, Alert } from "react-bootstrap";
+import firebase from "firebase/compat/app";
 
 import { useState, useEffect } from "react";
 
+export default function Messages() {
+//   const [currentDate] = useState(Date());
+const messagesRef = db.collection('Messages')
+  const [newMessage, setNewMessage] = useState("");
+  const handleUserInput = (e) => {
+    setNewMessage(e.target.value);
+  };
 
+  const { currentUser } = useAuth();
 
-export default function Messages() {  
-    const [currentDate ] = useState(Date());
-    const [inputValue, setInputValue] = useState('');
-    const handleUserInput = (e) => {
-        setInputValue(e.target.value);
-    };
-
-    const { currentUser } = useAuth();
-
-    const [loading, setLoading] = useState(false);
-    const [messages, setMessages] = useState([])
+  const [loading, setLoading] = useState(false);
+  const [messages, setMessages] = useState([]);
   const [error, setError] = useState(null);
 
-useEffect(() => {
-console.log('begin fetch messages')
-    setError('')
-try {
-    
-return db
-.collection('Messages')
-// .get()
-// .orderBy('createdAt')
-// .limit(100)
-.then((querySnapshot) => {
-    const data = querySnapshot.forEach(doc => ({
-        ...doc.data(),
-        id: doc.id,
-    }));
-    setMessages(data)
-    console.log('finished setting messages')
-})
-} catch (error) {
- setError("Problem getting messages.")
-}
+//   fetch messages on page load
+  useEffect(() => {
+    console.log("begin fetch messages");
+    setError("");
+    const getMessagesFromFirestore = [];
+    const getUserMessagesFromFirestore = [];
+    try {
+      return (
+        db
+          .collection("Messages")
+          .get()
+          // .orderBy('createdAt')
+          // .limit(100)
+          .then((querySnapshot) => {
+            if (getMessagesFromFirestore.length < 1) {
+              querySnapshot.forEach((doc) => {
+                getMessagesFromFirestore.push({
+                  ...doc.data(),
+                  key: doc.id,
+                });
+                const currentDoc = doc.data();
+                if (currentDoc.uid === currentUser.uid) {
+                  getUserMessagesFromFirestore.push({
+                    ...doc.data(),
+                    key: doc.id,
+                  });
+                }
+              });
 
-}, [])
-    
-// useEffect(() => {
-//     const getMessagesFromFirestore = [];
-//     const getThisUserMessages = [];
-//     try {
-//         return db
-//         .collection("Messages")
-//         .get(currentUser.uid)
-//         .then((querySnapshot) => {
-//             if (getMessagesFromFirestore.length < 1) {
-//                 querySnapshot.forEach((doc) => {
-//                     getMessagesFromFirestore.push({
-//                         ...doc.data(),
-//                         key: doc.id,
-//                     });
-//                     const currentDoc = doc.data();
-//                     if (currentDoc.uid === currentUser.uid) {
-//                         getThisUserMessages.push({
-//                             ...doc.data(),
-//                             key: doc.id,
-//                         })
-//                     }
-//                 });
-//                 setMessages(getThisUserMessages);
-//                 setLoading(false);
-//             }
-//         });
-//     } catch (error) {
-//         setError("trouble")
-//     }
-// }, [])
+              setMessages(getMessagesFromFirestore);
+              console.log(messages);
+            }
+          })
+      );
+    } catch (error) {
+      setError("Problem getting messages.");
+    }
+  }, []);
 
 
+  // send message from form
+  const sendMessage = (event) => {
+    event.preventDefault();
+    setLoading(true);
 
-// send message from form
-    const sendMessage = (event) => {
-        event.preventDefault()
-        setLoading(true)
-        const elementsArray = [...event.target.elements];
-        const formData = elementsArray.reduce((accumulator, currentValue) => {
-          if (currentValue.id) {
-            accumulator[currentValue.id] = currentValue.value;
-          }
-    
-          return accumulator;
-        }, {});
-    
-        db.collection("Messages").doc().set(formData);
-    setLoading(false)
-      setInputValue('')
+    const trimmedMessage = newMessage.trim();
+    if (trimmedMessage) {
+messagesRef.add({
+    message: trimmedMessage,
+    createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+    senderId: currentUser.uid,
+
+});
     }
 
-    return (
-        <>
-
-<Container>
-    {loading && <Alert variant="primary">Loading</Alert>}
-    {error && <Alert variant="warning">{error}</Alert>}
-    <h2>Incoming Messages</h2>
+    // db.collection("Messages").doc(currentUser.uid).set(formData);
+    setLoading(false);
+    setNewMessage("");
+  };
 
 
-{messages.length > 0 ? (
-messages.map((message) => <div key={message.id}>{message.message}</div>)
-) : (
-<h5>No messages just yet.</h5>
-)}
+//   delete message button
+function deleteMessage(e) {
+    e.preventDefault();
+    db.collection("Messages").doc().delete();
+    console.log('delete message engaged');
+}
 
 
-</Container>
+  return (
+    <>
+      <Container>
+        {loading && <Alert variant="primary">Loading</Alert>}
+        {error && <Alert variant="warning">{error}</Alert>}
+        <h2>Incoming Messages</h2>
 
-           <Container>
-               <h2>Send Message</h2>
-               <Form onSubmit={sendMessage}>
-<Form.Group hidden>
-<Form.Control id="createdAt" type="text" defaultValue={currentDate}></Form.Control>
-</Form.Group>
+        {messages.length > 0 ? (
+          messages.map((message) => (
+            <Alert className="d-flex" variant="success" key={message.key}>
+              <Button onClick={deleteMessage}>x</Button>
+              <p>{message.id}</p>
+                <p>
+              {message.message}
+                </p>
+                <p> {" "}
+              {message.key}
+                </p>
+            </Alert>
+          ))
+        ) : (
+          <p>No messages just yet.</p>
+        )}
+      </Container>
 
-<Form.Group hidden>
-    <Form.Control id="senderId" type="text" defaultValue={currentUser.uid}></Form.Control>
-</Form.Group>
-{inputValue}
-<Form.Group className="my-3">
-    <Form.Label>Message:</Form.Label>
-    <Form.Control onChange={handleUserInput} value={inputValue} as="textarea" rows="4" id="message"></Form.Control>
-</Form.Group>
 
-<Button className="mb-4" disabled={loading} type="submit">Send Message</Button>
-               </Form>
-               </Container> 
-        </>
-    )
+      <Container>
+        <h2>Send Message</h2>
+        <Form onSubmit={sendMessage}>
+          {/* <Form.Group hidden>
+            <Form.Control
+              id="createdAt"
+              type="text"
+              defaultValue={currentDate}
+            ></Form.Control>
+          </Form.Group>
+
+          <Form.Group hidden>
+            <Form.Control
+              id="senderId"
+              type="text"
+              defaultValue={currentUser.uid}
+            ></Form.Control>
+          </Form.Group> */}
+          {/* {inputValue} */}
+          <Form.Group className="my-3">
+            <Form.Label>Message:</Form.Label>
+            <Form.Control
+              onChange={handleUserInput}
+              value={newMessage}
+              as="textarea"
+              rows="4"
+              id="message"
+            ></Form.Control>
+          </Form.Group>
+
+          <Button className="mb-4" disabled={loading} type="submit">
+            Send Message
+          </Button>
+        </Form>
+      </Container>
+    </>
+  );
 }

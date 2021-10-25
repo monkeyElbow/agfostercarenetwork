@@ -315,6 +315,8 @@ export default function CreateProfile() {
 
         <input type="hidden" id="uid" value={currentUser.uid}></input>
 
+        <input type="hidden" id="email" value={currentUser.email}></input>
+
         <Button className="mt-4" disabled={loading} type="submit">
           Create Profile
         </Button>

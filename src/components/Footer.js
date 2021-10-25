@@ -14,6 +14,8 @@ export default function Footer() {
 
 <Link to="/">Home</Link>
 
+<Link to="/contact">Contact</Link>
+
 {currentUser &&
 <Link to="/dashboard">
  

@@ -25,7 +25,12 @@ import updatePassword from './pages/updatePassword';
 import networkPage from './pages/networkPage';
 import DeleteAccount from './pages/DeleteAccount';
 
-import Messages from './pages/Messages'
+import Admin from './pages/admin/Admin';
+
+
+// import Messages from './pages/Messages'
+import network2 from './pages/network2';
+import Sort from './pages/sort';
 
 function App() {
 
@@ -61,12 +66,18 @@ function App() {
     <Route path="/about" component={about} />
     <Route path="/signin" component={signin} />
     <Route path="/contact" component={contact} />
+    
     <PrivateRoute path="/network" component={networkPage} />
+    <PrivateRoute path="/network2" component={network2} />
+ 
+    {/* <PrivateRoute path="/messages" component={Messages} /> */}
+    <PrivateRoute path="/sort" component={Sort} />
+
     <PrivateRoute path="/profile" component={profile} />
     <PrivateRoute path="/update-password" component={updatePassword} />
     <PrivateRoute path="/map" component={mapPage} />
+    <PrivateRoute path="/admin" component={Admin} />
     <PrivateRoute path="/dashboard" component={dashboard} />
-    <PrivateRoute path="/messages" component={Messages} />
     <PrivateRoute path="/create-profile" component={CreateProfile} />
     <PrivateRoute path="/update-profile" component={UpdateProfile} />
     <PrivateRoute path="/delete-account" component={DeleteAccount} />

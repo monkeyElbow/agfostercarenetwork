@@ -46,12 +46,13 @@ export default function MenuMain() {
 {currentUser.email}
 </Link>
 }
-{currentUser && 
+{/* {currentUser && 
         <Link to="/" onClick={handleLogout}>
         Sign Out
     </Link>
-}
+} */}
 
+<Link to="/contact">Contact</Link>
      
       {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

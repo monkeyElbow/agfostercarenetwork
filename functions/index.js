@@ -1,8 +1,17 @@
-const functions = require("firebase-functions");
+// attempt at send email. Currently using fb trigger email
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
+// const admin = require("firebase-admin");
+// const sendEmail = require('./sendEmail')
+
+// admin.initializeApp()
+
+// exports.sendEmail = sendEmail;
+
+
+
+
+// original function code
+
 // exports.helloWorld = functions.https.onRequest((request, response) => {
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");

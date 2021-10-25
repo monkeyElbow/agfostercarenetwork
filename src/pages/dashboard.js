@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Container, Card, Button, Alert } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { useAuth } from "../util/AuthContext";
-// import { db } from "../util/firebase";
+import { db } from "../util/firebase";
 
 export default function Dashboard() {
   const { currentUser, signout } = useAuth();
@@ -58,10 +58,24 @@ export default function Dashboard() {
 
 // }, [])
 
+// function SendMail(e) {
+// e.preventDefault();
+// db.collection('mail').add({
+//   to: 'james.gerhold@gmail.com',
+//   message: {
+//     subject: 'Firebase test email',
+//     text: `${currentUser.email} Wanted to reach out to you through the AG Foster Care Network. 
+//     `,
+//     replyTo:`${currentUser.email}`
+//     // html: 'This is the <code>HTML</code> section of the email body.',
+//   }
+// }).then(() => console.log('Queued email for delivery!'));
+// }
 
 
   return (
     <>
+{/* <Button className="m-3" onClick={SendMail} to="#">Email test</Button> */}
 
     <Container className="my-3 d-flex flex-column align-items-center justify-content-center"
     style={{minHeight:"84vh"}}

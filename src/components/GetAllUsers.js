@@ -40,7 +40,26 @@ export default function GetAllUsers() {
   }, []);
 
 
+  const [userMessage, setUserMessage] = useState("")
+  const handleUserMessage = (e) => {
+setUserMessage(e.target.value)
+  }
 
+
+  function SendMail(e) {
+    e.preventDefault();
+    db.collection('mail').add({
+      to: 'james.gerhold@gmail.com',
+      message: {
+        subject: 'Network User Message',
+        text: `${currentUser.email} Wanted to reach out to you through the AG Foster Care Network. This is what they had to say: 
+        `,
+        replyTo:`${currentUser.email}`
+        // html: 'This is the <code>HTML</code> section of the email body.',
+      }
+    }).then(() => console.log('Queued email for delivery!'));
+    }
+    
 
 
 
@@ -148,6 +167,8 @@ export default function GetAllUsers() {
     {profile.comments}
   </p>
 )}
+
+
 
 </Card.Body>
       </Accordion.Collapse>

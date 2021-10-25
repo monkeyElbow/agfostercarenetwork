@@ -1,15 +1,17 @@
 import BootstrapTable from "react-bootstrap-table-next";
 import { db } from "../util/firebase";
-import {  Alert, Container, Row, Col } from "react-bootstrap";
+import {  Alert, Container, Row, Col, Form, Button } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import { useAuth } from "../util/AuthContext";
 
 
 
 export default function NetworkTable() {
+  const { currentUser } = useAuth();
 
     const [loading, setLoading] = useState(false);
     const [profiles, setProfiles] = useState([]);
@@ -46,6 +48,65 @@ export default function NetworkTable() {
           }
     }, []);
     
+
+
+
+      // -----------------
+      // begin user mail form
+function MailUserForm({emailTo, first_name}) {
+const [msg, setMsg] = useState("")
+const [msgSent, setMsgSent] = useState(false)
+
+function SendIt(e) {
+  e.preventDefault();
+  db.collection('mail').add({
+    to: `${emailTo}`,
+    replyTo:`${currentUser.email}`,
+    // from:`${currentUser.email}`,
+    message: {
+      subject: 'Message from AG Foster Care Network Member',
+      text: `${currentUser.email} is reaching out to you via the AG Foster Care Network. This is what they had to say: ${msg}
+      `,
+      html: `${currentUser.email} is reaching out to you via the AG Foster Care Network. This is what they had to say: ${msg}
+      `,
+    }
+  }).then(() => console.log('Queued email for delivery!'));
+
+  setMsgSent(true)
+  setMsg("")
+  }
+  
+  return (
+    <Form onSubmit={SendIt} className="bg-white p-4">
+    <h5>You can send {first_name} an email here:</h5>
+    {/* <p>
+      Will email to: 
+    {emailTo}
+    </p>
+    <p>
+      The message: 
+    {msg}<br />
+    </p> */}
+    <Form.Control
+    as="textarea" 
+    value={msg} onInput={e => setMsg(e.target.value)} type="text" />
+
+{msgSent === false &&
+<Button
+   type="submit" 
+   className="my-1"
+>Send email</Button>
+}
+
+{msgSent === true &&
+<Button disabled type="submit" className="my-1"
+>Email sent!</Button>
+}
+    </Form>
+  )
+}
+// end send email form
+// ---------------------------------
   
 // const {ToggleList} = ColumnToggle;
 
@@ -84,6 +145,7 @@ const CustomToggleList = ({
     // {dataField: 'uid', text: 'Id'},
     {dataField: 'first_name', text: 'First Name', sort: true},
     {dataField: 'last_name', text: 'Last Name', sort: true},
+
     // {dataField: 'org_ag', text: 'AG Organization', hidden: true, sort: true},
     // {dataField: 'org_ag_title', text: 'Title', hidden: true, sort: true},
     // {dataField: 'org_other', text: 'Organization', hidden: true, sort: true},
@@ -265,7 +327,11 @@ const CustomToggleList = ({
   </p>
 )}
 
-
+{/* send message to user if email is present in profile */}
+{row.email && 
+<MailUserForm emailTo={row.email} first_name={row.first_name} />
+ }
+ {/* end if email / send email */}
 
 
      </Container>
@@ -278,11 +344,10 @@ const CustomToggleList = ({
   return (
         <>
 
-            <h3>AG Foster Care Network Members</h3>
+           
             {loading && <Alert variant="light">Loading...</Alert>}
       {error && <Alert variant="warning">{error}</Alert>}
-      <Alert variant="primary">*Thank you for joining the network . Check back for additional Networking features to come. 
-      </Alert>
+     
 
 
       <ToolkitProvider
